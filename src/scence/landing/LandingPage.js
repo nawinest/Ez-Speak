@@ -9,6 +9,7 @@ import GetFromUs from './GetFromUs';
 import StaffSection from './StaffSection';
 import AdsWebsite from './AdsWebsite';
 import Footer from './Footer';
+import Constants from '../../Utility/Constant';
 
 class LandingPage extends Component {
     state = {}
@@ -21,10 +22,10 @@ class LandingPage extends Component {
                     <Container>
                         <FeatureContent>
                             <p>Take your first step with ezSpeak</p>
-                            <h1>
+                            <span>
                                 เริ่มต้นการเรียนรู้ของคุณ
                                 <br></br>ด้วยตนเองอย่างง่ายดาย
-                             </h1>
+                            </span>
 
                             <FromSearch>
                                 <InputEz name="" placeholder="ลอง “ฝึกร้องเพลง”" />
@@ -37,9 +38,9 @@ class LandingPage extends Component {
                     <SectionWrapper2>
                         <CorseSuggestDetail>
                             <CorseSuggestDetailLeft>
-                                <h4>เพลิดเพลินไปกับคอร์สเรียน<br></br>
+                                <p>เพลิดเพลินไปกับคอร์สเรียน<br></br>
                                     ที่เราคัดสรรมาอย่างดี<br></br>
-                                    สำหรับคุณโดยเฉพาะ</h4>
+                                    สำหรับคุณโดยเฉพาะ</p>
                             </CorseSuggestDetailLeft>
                             <CorseSuggestDetailRight>
                                 <TextLight>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -51,11 +52,36 @@ class LandingPage extends Component {
 
                     <SectionWrapper>
                         <RowEasy>
-                            <CourseFeature />
-                            <CourseFeature />
-                            <CourseFeature />
-                            <CourseFeature />
-                            <CourseFeature />
+                            <CourseFeature 
+                                imagesURL={"https://cdn-images-1.medium.com/max/800/1*1-n8b6qiAe7aAk1sEv4dww.png"}
+                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                courseLink={"#"}
+                                courseType={Constants.NEWBIE_STUDENT}
+                            />
+                            <CourseFeature 
+                                imagesURL={"https://cdn-images-1.medium.com/max/800/1*BU3wN8rLVoDTamIWnaD_Og.png"}
+                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                courseLink={"#"}
+                                courseType={Constants.MEDIUM_STUDENT}
+                            />
+                            <CourseFeature 
+                                imagesURL={"https://sites.google.com/site/littelgingdown/_/rsrc/1468866256433/hmapa-wolf/unnamed.png"}
+                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                courseLink={"#"}
+                                courseType={Constants.EXPERT_STUDENT}
+                            />
+                            <CourseFeature 
+                                imagesURL={"https://i0.wp.com/www.docker.com/blog/wp-content/uploads/53dc73f1-1bfe-415c-a0e9-1f75507675de-1.jpg?zoom=2.625&ssl=1"}
+                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                courseLink={"#"}
+                                courseType={Constants.EXPERT_STUDENT}
+                            />
+                            <CourseFeature 
+                                imagesURL={"https://miro.medium.com/max/2820/1*ovRuAuqPf4r2xpiWh71rUg.png"}
+                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวันฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                courseLink={"#"}
+                                courseType={Constants.MEDIUM_STUDENT}
+                            />
                             <SeeMoreCourseFeature />
                         </RowEasy>
                     </SectionWrapper>
@@ -85,13 +111,17 @@ const CorseSuggestDetail  = styled.div`
 `;
 
 const CorseSuggestDetailLeft = styled.div`
-      
-    
+    line-height: 32px!important;
+    font-size: 24px;
+    font-weight: 500;
 `;
 
 const CorseSuggestDetailRight = styled.div`
     width: 30%;
     margin-left: auto;
+    font-size: 16px;
+    font-weight: 200px;
+    color: #7A7A7A;
     @media (max-width: 769px) {
         width: auto;
     }
@@ -161,6 +191,10 @@ const FeatureBanner = styled.div`
     width: 100%;
     background: red;
     margin: 0 auto;
+    background-origin: border-box!important;
+    background-size: cover!important;
+    background-color: #f0f0f0!important;
+    background-position: 50% 50% !important;
     background-image: linear-gradient(to left, rgba(76, 170, 247, 0), rgba(76, 170, 247, 0), rgba(195, 128, 254, 0.4),rgba(76, 170, 247, 1)), url(https://i.udemycdn.com/notices/home_banner/image/4d2b4fde-c9b9-442c-9a1b-9f03fc0b3cf9.jpg);
 `;
 
@@ -169,6 +203,16 @@ const FeatureContent = styled.div`
     color: white;
     width: 100%;
     padding-left: 16px;
+    
+    & span {
+        font-size: 2.5em;
+    }
+
+    @media (max-width: 768px) {
+        & span {
+            font-size: 2em;
+        }
+    }
 `;
 
 
