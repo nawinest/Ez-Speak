@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Navbar from "./component/NavsBar";
+import GlobalStyle from './Utility/Global';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Container } from 'react-bootstrap';
+import LandingPage from './scence/landing/LandingPage';
+class App extends Component {
+  state = {
+    navbarOpen: false
+  }
 
-export default App;
+  handleNavbar = () => {
+    this.setState({ navbarOpen: !this.state.navbarOpen });
+  }
+
+  render() {
+
+    return (
+      <div>
+        <div>
+          <Container>
+            <Navbar
+              navbarState={this.state.navbarOpen}
+              handleNavbar={this.handleNavbar} />
+          </Container>
+        </div>
+          <div className='content'>
+            <LandingPage />
+          </div>
+
+
+          <GlobalStyle />
+        </div>
+
+        )
+      }
+    }
+    
+    export default App
