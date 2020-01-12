@@ -7,7 +7,7 @@ class AdsWebsite extends Component {
         return (
             <Container>
                 <AdsWebsiteWrapper>
-                    <AdsWebsiteImage alt="dev" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTeXUrT_7jM89dyNslw5ndyBo2r9LAGjQSx4jEppjGtTSLOChFc" />
+                    <AdsWebsiteImage alt="dev" src="https://media-cdn.tripadvisor.com/media/photo-s/0c/13/c0/8d/street-bangkok-local.jpg" />
                     <CenterContent>
                         สมัครเรียนเลยวันนี้เพื่อรับส่วนลดพิเศษมากสูงสุด 15%
                         จากคอร์สเรียนแนะนำของเรา ภายในสิ้นปีนี้เท่านั้น
