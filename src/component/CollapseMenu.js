@@ -59,6 +59,7 @@ const Wrapper = styled.div`
     position: fixed;
     top:0;
     left:0;
+    z-index: 1;
 `;
 const CollapseMenuBottom = styled.div`
     display: flex;
@@ -147,7 +148,7 @@ const CollapseWrapper = styled(animated.div)`
   flex-direction: column;
   width: 264px;
   height: 100vh;
-  z-index: 1;
+  z-index: 999999;
   
   @media (min-width: 769px) {
     display: none;
