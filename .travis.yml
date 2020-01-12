@@ -1,0 +1,26 @@
+os: linux
+language: node_js
+node_js:
+  - "11"
+sudo: true
+services: 
+  - docker
+
+before_install:
+  - docker build -t nawinest/ezspeak:1.0 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true nawinest/ezspeak:1.0 npm run test
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "ez-speak"
+  env: "EzSpeak-env"
+  bucket_name: "elasticbeanstalk-us-east-2-745749420732"
+  bucket_path: "ez-speak"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
