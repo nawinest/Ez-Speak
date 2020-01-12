@@ -31,6 +31,7 @@ const RightContent = styled.div`
 
     @media (max-width: 769px) {
         padding-left: 14px;
+        padding-bottom: 14px;
         display: block;
     }
 `;

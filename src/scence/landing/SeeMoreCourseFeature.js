@@ -26,16 +26,9 @@ class SeeMoreCourseFeature extends Component {
             width: 100%;
             padding-right: 15px;
             padding-left: 15px;
-
-            
-            @media (max-width: 1000px) {
+            @media (max-width: 800px) {
                 flex: 0 0 50%;
             }
-
-            @media (max-width: 700px) {
-                flex: 0 0 100%;
-            }
-
        `;
        
        const SeemoreButton = styled.button`
@@ -44,27 +37,53 @@ class SeeMoreCourseFeature extends Component {
           padding: 0.4em 1em;
           border: 2px solid #4DA8F9;
           background: none;
+          
        `;
        
        const CourseTitle = styled.h4`
-           color: #454545;
-           margin-top: 0.5em;
-           max-width: 100%;
-           max-height: 100px;
-           overflow:hidden;
+            color: #454545;
+            font-size: 24px;
+            font-weight: 300;
+            margin-top: 0.85em;
+            width: 100%;
+            height: 60px;
+            line-height: 30px;
+            @media (max-width: 800px) {
+                font-size: 16px;
+            }
+            display: block!important;
+            display: -webkit-box!important;
+            -webkit-line-clamp: 2;
+            -moz-line-clamp: 2;
+            -ms-line-clamp: 2;
+            -o-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            -moz-box-orient: vertical;
+            -ms-box-orient: vertical;
+            -o-box-orient: vertical;
+            box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: normal;
        `;
         
        const CourseFeatureEz = styled.div`
-           height: 290px;
-           border-radius: 1em;
-           overflow: hidden;
-           width: 100%;
-           margin: 0.7em auto;
-           border: 2px solid #4DA8F9;
-        
-           display: flex;
-           justify-content: center;
-           align-items: center;
+            
+            border-radius: 1em;
+            overflow: hidden;
+            width: 100%;
+            margin: 0.7em auto;
+            border: 2px solid #4DA8F9;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 300px;
+            @media (max-width: 800px) {
+                height: 260px;
+            }
            
        `;
         

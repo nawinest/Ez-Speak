@@ -8,10 +8,10 @@ import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
 
 const Navsbar = (props) => {
-    //   const barAnimation = useSpring({
-    //     from: { transform: 'translate3d(0, -10rem, 0)' },
-    //     transform: 'translate3d(0, 0, 0)',
-    //   });
+      const barAnimation = useSpring({
+        from: { transform: 'translate3d(0, -10rem, 0)' },
+        transform: 'translate3d(0, 0, 0)',
+      });
 
     //   const linkAnimation = useSpring({
     //     from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
@@ -22,8 +22,8 @@ const Navsbar = (props) => {
 
     return (
         <>
-            {/* <NavBar style={barAnimation}> */}
-            <NavBar>
+            {/* <NavBar > */}
+            <NavBar style={barAnimation}>
                 <FlexContainer>
                     <Brand />
                     <FromSearch>
