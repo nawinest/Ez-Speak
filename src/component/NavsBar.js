@@ -26,10 +26,10 @@ const Navsbar = (props) => {
             <NavBar>
                 <FlexContainer>
                     <Brand />
-                    <Searchform>
+                    <FromSearch>
                         <InputEz name="" placeholder="คุณอยากเรียนอะไร?" />
                         <ButtonSearch type="submit"> <FontAwesomeIcon icon={faSearch} /> </ButtonSearch>
-                    </Searchform>
+                    </FromSearch>
                     {/* <NavLinks style={linkAnimation}> */}
                     <NavLinks>
                         <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
@@ -56,10 +56,6 @@ export default Navsbar
 
 const NavBar = styled(animated.nav)`
   width:100%;
-`;
-
-const Searchform = styled.form`
-    flex: 3;
 `;
 
 const FlexContainer = styled.div`
@@ -114,30 +110,37 @@ const BurgerWrapper = styled.div`
   }
 `;
 
+const FromSearch = styled.form`
+    flex: 3;
+    max-width: 350px;
+    margin-right: auto;
+    display: flex;
+    @media (max-width: 999px) {
+        display: none
+    }
+`;
+
 const InputEz = styled.input`
     background: #F4F4F4;
-    color: #;
+    flex: 1;
+    color: black;
     border: none;
-    font-size: 1em;
-    width: 75%;
-    padding: 0.6rem;
     border-top-left-radius: 10em;
     border-bottom-left-radius: 10em;
-    @media (max-width: 1000px) {
-        display: none;
-    }
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    padding-left: 20px;
 `;
 
 
 const ButtonSearch = styled.button`
     background: #F4F4F4;
     border: none;
-    width: 40px;
-    padding: 0.6rem;
-    font-size: 1em;
     border-top-right-radius: 10em;
     border-bottom-right-radius: 10em;
-    @media (max-width: 1000px) {
-        display: none;
-    }
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
 `;

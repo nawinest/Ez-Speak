@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import styled from "styled-components";
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faOtter } from '@fortawesome/free-solid-svg-icons'
 import CourseFeature from './CourseFeature';
 import SeeMoreCourseFeature from './SeeMoreCourseFeature';
 import GetFromUs from './GetFromUs';
 import StaffSection from './StaffSection';
+import AdsWebsite from './AdsWebsite';
+import Footer from './Footer';
 
 class LandingPage extends Component {
     state = {}
@@ -21,30 +23,30 @@ class LandingPage extends Component {
                             <p>Take your first step with ezSpeak</p>
                             <h1>
                                 เริ่มต้นการเรียนรู้ของคุณ
-                            <br></br>ด้วยตนเองอย่างง่ายดาย
-                        </h1>
+                                <br></br>ด้วยตนเองอย่างง่ายดาย
+                             </h1>
 
-                            <form>
+                            <FromSearch>
                                 <InputEz name="" placeholder="ลอง “ฝึกร้องเพลง”" />
                                 <ButtonSearch type="submit"> <FontAwesomeIcon icon={faSearch} /> </ButtonSearch>
-                            </form>
+                            </FromSearch>
                         </FeatureContent>
                     </Container>
                 </FeatureBanner>
                 <Container>
                     <SectionWrapper2>
-                        <Row>
-                            <Col xs={12} md={8}>
+                        <CorseSuggestDetail>
+                            <CorseSuggestDetailLeft>
                                 <h4>เพลิดเพลินไปกับคอร์สเรียน<br></br>
                                     ที่เราคัดสรรมาอย่างดี<br></br>
                                     สำหรับคุณโดยเฉพาะ</h4>
-                            </Col>
-                            <Col xs={6} md={4}>
+                            </CorseSuggestDetailLeft>
+                            <CorseSuggestDetailRight>
                                 <TextLight>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt ut labore et dolore magna
                                 aliqua. Ut enim ad minim veniam, quis </TextLight>
-                            </Col>
-                        </Row>
+                            </CorseSuggestDetailRight>
+                        </CorseSuggestDetail>
                     </SectionWrapper2>
 
                     <SectionWrapper>
@@ -64,10 +66,37 @@ class LandingPage extends Component {
                 <SectionWrapper>
                     <StaffSection />
                 </SectionWrapper>
+                <SectionWrapper>
+                    <AdsWebsite />
+                </SectionWrapper>
+                <SectionWrapper>
+                    <Footer />
+                </SectionWrapper>
             </>
         )
     }
 }
+
+const CorseSuggestDetail  = styled.div`
+    display: flex;
+    @media (max-width: 769px) {
+        flex-direction: column;
+    }
+`;
+
+const CorseSuggestDetailLeft = styled.div`
+      
+    
+`;
+
+const CorseSuggestDetailRight = styled.div`
+    width: 30%;
+    margin-left: auto;
+    @media (max-width: 769px) {
+        width: auto;
+    }
+`;
+
 
 const TextLight = styled.p`
     font-weight: 300;
@@ -90,27 +119,39 @@ const SectionWrapper2 = styled.div`
     width: 100%;
 `;
 
+const FromSearch = styled.form`
+    width: 50%;
+    display: flex;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
+`;
+
 const InputEz = styled.input`
+    flex: 1
     background: white;
     color: black;
     border: none;
-    font-size: 1em;
-    width: 25%;
-    padding: 0.6rem;
     border-top-left-radius: 10em;
     border-bottom-left-radius: 10em;
+    padding: 8px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    padding-left: 20px;
 `;
 
 
 const ButtonSearch = styled.button`
-    background: none;
     background: white;
     border: none;
-    width: 40px;
-    padding: 0.6rem;
-    font-size: 1em;
     border-top-right-radius: 10em;
     border-bottom-right-radius: 10em;
+    padding: 8px 16px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
 `;
 
 const FeatureBanner = styled.div`
