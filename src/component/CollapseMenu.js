@@ -101,7 +101,8 @@ const NavLinksWrapper = styled.div`
 
 const CloseBtn = styled.button`
     position: relative;
-
+    background: none;
+    border:none;
     cursor: pointer;
     display: block;
     & span {
