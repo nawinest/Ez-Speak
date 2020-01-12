@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { Container } from 'react-bootstrap';
 import LandingPage from './scence/landing/LandingPage';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 class App extends Component {
   state = {
     navbarOpen: false
@@ -18,7 +20,7 @@ class App extends Component {
   render() {
 
     return (
-      <div>
+      <Router>
         <div>
           <Container>
             <Navbar
@@ -26,16 +28,15 @@ class App extends Component {
               handleNavbar={this.handleNavbar} />
           </Container>
         </div>
-          <div className='content'>
-            <LandingPage />
-          </div>
-
-
-          <GlobalStyle />
+        <div className='content'>
+          <Switch>
+            <Route path="/" exact component={LandingPage} />
+          </Switch>
         </div>
+        <GlobalStyle />
+      </Router>
+    )
+  }
+}
 
-        )
-      }
-    }
-    
-    export default App
+export default App
