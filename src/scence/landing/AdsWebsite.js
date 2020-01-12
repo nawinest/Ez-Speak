@@ -42,6 +42,9 @@ const SeemoreButton = styled.button`
     padding: 0.4em 1em;
     border: 2px solid #4DA8F9;
     background: none;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 15px;
 `;
 
 const AdsWebsiteWrapper = styled.div`
@@ -72,20 +75,29 @@ const AdsWebsiteImage = styled.img`
 const CenterContent = styled.div`
     
     flex: 0 0 50%;
-    padding: 20px;
+    padding: 18px;
     color: #4DA8F9;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+
     & span {
-        color: black;
-        font-size: 11px;
+        color: #868686;
         font-weight: 300;
+        font-size: 12px;
+        line-height: 16px;
+
+        & p {
+            margint-bottom: 0!important;
+        }
     }
 
     @media (max-width: 769px) {
-        padding: 10px;
+        padding: 14px 14px 0 14px;
     }
 `;
 

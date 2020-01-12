@@ -111,16 +111,17 @@ const CorseSuggestDetail  = styled.div`
 `;
 
 const CorseSuggestDetailLeft = styled.div`
-    line-height: 32px!important;
-    font-size: 24px;
     font-weight: 500;
+    font-size: 18px;
+    line-height: 24px!important;
 `;
 
 const CorseSuggestDetailRight = styled.div`
     width: 30%;
     margin-left: auto;
-    font-size: 16px;
-    font-weight: 200px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
     color: #7A7A7A;
     @media (max-width: 769px) {
         width: auto;
@@ -152,6 +153,7 @@ const SectionWrapper2 = styled.div`
 const FromSearch = styled.form`
     width: 50%;
     display: flex;
+    margin-top: 16px !important;
     @media (max-width: 768px) {
         width: 100%;
     }
@@ -165,10 +167,14 @@ const InputEz = styled.input`
     border-top-left-radius: 10em;
     border-bottom-left-radius: 10em;
     padding: 8px;
-    margin-top: 8px;
-    font-size: 17px;
+    margin-top: 4px;
     border: none;
     padding-left: 20px;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 16px;
 `;
 
 
@@ -178,7 +184,7 @@ const ButtonSearch = styled.button`
     border-top-right-radius: 10em;
     border-bottom-right-radius: 10em;
     padding: 8px 16px;
-    margin-top: 8px;
+    margin-top: 4px;
     font-size: 17px;
     border: none;
     cursor: pointer;
@@ -200,17 +206,27 @@ const FeatureBanner = styled.div`
 
 
 const FeatureContent = styled.div`
-    color: white;
+    color: #FFFFFF;
     width: 100%;
     padding-left: 16px;
-    
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 21px;
+    & p {
+        margin-bottom: 5px!important;
+    }
+
     & span {
-        font-size: 2.5em;
+        font-size: 29px;
+        font-weight: 500;
+        line-height: 39px;
     }
 
     @media (max-width: 768px) {
         & span {
-            font-size: 2em;
+            font-size: 23px;
+            font-style: normal;
+            line-height: 33px;
         }
     }
 `;

@@ -31,10 +31,15 @@ const HeaderCenter = styled.div`
 
 const TopicHeader = styled.h4`
     color: #4DA8F9;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
 `;
 
 const Detail = styled.p`
-    color: #868686;
-    font-weight:300;
+    color: #7A7A7A;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
 `;
  

@@ -46,13 +46,16 @@ const AuthorContent = styled.div`
 `
 
 const NameTitle = styled.p`
-    font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
     margin: 0px;
 `;
 
 const RoleTitle = styled.p`
     font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
 `;
 
 export default StaffCard;

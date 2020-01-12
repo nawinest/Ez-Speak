@@ -36,7 +36,10 @@ const Wrapper = styled.div`
 `;
 
 const TopicHeader = styled.h4`
-    
+    color:#2D2D2D;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
 `;
 
 
@@ -57,8 +60,10 @@ const HeaderCenter = styled.div`
 
 
 const DetailHeader = styled.p`
-    color: #868686;
-    font-weight:300;
+    color: #7A7A7A;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
 `;
 
 export default GetFromUs;

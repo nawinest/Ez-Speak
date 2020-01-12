@@ -15,18 +15,20 @@ export default SimpleCard;
 
 
 const CardTopic = styled.h5`   
-    margin: 0.5em 0;
-    font-weight: 400;
+    margin: 0 19px 0 10px;
+    font-weight: normal;
     font-size: 15px;
+    line-height: 19px;
 `;
 
 const CardContent = styled.h5`   
-    font-size: 11px;
     font-weight: 300;
+    font-size: 11px;
+    line-height: 16px;
 `;
 
 const CardEz = styled.div`
-    margin-top: 1.5em;
+    margin-top: 24px;
     flex: 0 0 25.0%;
     text-align: center;
     width: 100%;

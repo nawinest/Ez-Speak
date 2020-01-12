@@ -10,6 +10,7 @@ const CollapseMenu = (props) => {
 
   if (props.navbarState === true) {
     return (
+      <Wrapper>
       <CollapseWrapper style={{
         transform: open.interpolate({
           range: [0, 0.2, 0.3, 1],
@@ -21,13 +22,13 @@ const CollapseMenu = (props) => {
           <span>
             เมนู
             </span>
-          <button onClick={props.handleNavbar}>
-            <CloseBtn>
+          
+            <CloseBtn onClick={props.handleNavbar}>
               <span>&nbsp;</span>
               <span>&nbsp;</span>
               <span>&nbsp;</span>
             </CloseBtn>
-          </button>
+          
         </CollapseMenuHeader>
         <NavLinksWrapper>
           <NavLinks onClick={props.handleNavbar}>
@@ -42,6 +43,7 @@ const CollapseMenu = (props) => {
         </CollapseMenuBottom>
 
       </CollapseWrapper>
+      </Wrapper>
     );
   }
   return null;
@@ -49,6 +51,15 @@ const CollapseMenu = (props) => {
 
 export default CollapseMenu;
 
+
+const Wrapper = styled.div`
+    background: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left:0;
+`;
 const CollapseMenuBottom = styled.div`
     display: flex;
     width: 100%;
@@ -88,7 +99,7 @@ const NavLinksWrapper = styled.div`
     margin-bottom: auto;
 `;
 
-const CloseBtn = styled.div`
+const CloseBtn = styled.button`
     position: relative;
 
     cursor: pointer;
@@ -135,6 +146,7 @@ const CollapseWrapper = styled(animated.div)`
   flex-direction: column;
   width: 264px;
   height: 100vh;
+  z-index: 1;
   
   @media (min-width: 769px) {
     display: none;
