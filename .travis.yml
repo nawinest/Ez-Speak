@@ -10,7 +10,7 @@ before_install:
   - docker build -t nawinest/ezspeak:1.0 -f Dockerfile.dev .
 
 script:
-  # - docker run -e CI=true nawinest/ezspeak:1.0 npm run test
+  
 
 deploy:
   edge: true
