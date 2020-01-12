@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faOtter } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import CourseFeature from './CourseFeature';
 import SeeMoreCourseFeature from './SeeMoreCourseFeature';
 import GetFromUs from './GetFromUs';
@@ -10,6 +10,8 @@ import StaffSection from './StaffSection';
 import AdsWebsite from './AdsWebsite';
 import Footer from './Footer';
 import Constants from '../../Utility/Constant';
+import { connect } from 'react-redux'
+import { getCourse } from '../../actions/landing'
 
 class LandingPage extends Component {
     state = {}
@@ -232,5 +234,8 @@ const FeatureContent = styled.div`
 `;
 
 
+const mapStateToProps = (state) => ({
+    landing: state.landing,
+})
 
-export default LandingPage;
+export default connect(mapStateToProps, { getCourse })(LandingPage);

@@ -1,12 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
 
-// import logo from "../../assets/logo-min.png";
-
 const Brand = () => {
   return (
-    // <Image src="" alt="Company Logo" />
-    <BrandText><span>ez</span>Speak</BrandText>
+        <BrandText><span>ez</span>Speak</BrandText>
   )
 }
 
@@ -24,9 +21,4 @@ const BrandText = styled.h2`
     color: #000000;
     font-weight: normal;
   }
-`;
-
-const Image = styled.img`
-  height: 85%;
-  margin: auto 0;
 `;

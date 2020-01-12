@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import { useSpring, animated, config } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Brand from "./Brands";
@@ -13,16 +13,8 @@ const Navsbar = (props) => {
         transform: 'translate3d(0, 0, 0)',
       });
 
-    //   const linkAnimation = useSpring({
-    //     from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
-    //     to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
-    //     delay: 800,
-    //     config: config.wobbly,
-    //   });
-
     return (
         <>
-            {/* <NavBar > */}
             <NavBar style={barAnimation}>
                 <FlexContainer>
                     <Brand />
