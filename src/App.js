@@ -12,6 +12,7 @@ import store from './store'
 import Modal from './component/modal/Modal';
 import Constant from './Utility/Constant';
 
+
 class App extends Component {
   state = {
     navbarOpen: false,
@@ -35,6 +36,7 @@ class App extends Component {
   render() {
 
     return (
+      
       <Provider store={store}>
         <Router>
           <div>
