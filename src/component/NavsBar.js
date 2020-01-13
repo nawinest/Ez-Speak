@@ -6,12 +6,17 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Brand from "./Brands";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
+import Constant from '../Utility/Constant';
 
 const Navsbar = (props) => {
-      const barAnimation = useSpring({
+    const barAnimation = useSpring({
         from: { transform: 'translate3d(0, -10rem, 0)' },
         transform: 'translate3d(0, 0, 0)',
-      });
+    });
+
+    const handleModal = () => {
+        props.handleModal(Constant.MODAL_SIGNUP_TYPE)
+    }
 
     return (
         <>
@@ -26,7 +31,7 @@ const Navsbar = (props) => {
                     <NavLinks>
                         <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
                         <ButtonEz normal href="/">เข้าสู่ระบบ</ButtonEz>
-                        <ButtonEz startButton href="/">เริ่มต้นใช้งาน</ButtonEz>
+                        <ButtonEz startButton onClick={handleModal}>เริ่มต้นใช้งาน</ButtonEz>
                     </NavLinks>
                     <BurgerWrapper>
                         <BurgerMenu
@@ -37,6 +42,7 @@ const Navsbar = (props) => {
                 </FlexContainer>
             </NavBar>
             <CollapseMenu
+                handleModal={props.handleModal}
                 navbarState={props.navbarState}
                 handleNavbar={props.handleNavbar}
             />
@@ -68,7 +74,7 @@ const NavLinks = styled(animated.ul)`
 
 const ButtonEz = styled.a`
     ${props => props.startButton && `
-        color: #ffffff;
+        color: #ffffff!important;
         background: #4DA8F9;
         margin-left: 1rem;
         padding: 0.5rem 2rem;

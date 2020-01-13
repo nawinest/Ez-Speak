@@ -9,14 +9,27 @@ import LandingPage from './scence/landing/LandingPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './store'
+import Modal from './component/modal/Modal';
+import Constant from './Utility/Constant';
 
 class App extends Component {
   state = {
-    navbarOpen: false
+    navbarOpen: false,
+    modalOpen: false,
+    modalType: ""
   }
+
 
   handleNavbar = () => {
     this.setState({ navbarOpen: !this.state.navbarOpen });
+  }
+
+  handleModal = (modalType = Constant.MODAL_SIGNUP_TYPE) => {
+    if (this.state.modalOpen) { document.body.style.overflow = 'unset' }
+    this.setState({
+      modalOpen: !this.state.modalOpen,
+      modalType: modalType
+    });
   }
 
   render() {
@@ -25,10 +38,12 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
+            <Modal show={this.state.modalOpen} handleModal={this.handleModal} modalType={this.state.modalType} />
             <Container>
               <Navbar
                 navbarState={this.state.navbarOpen}
-                handleNavbar={this.handleNavbar} />
+                handleNavbar={this.handleNavbar}
+                handleModal={this.handleModal} />
             </Container>
           </div>
           <div className='content'>

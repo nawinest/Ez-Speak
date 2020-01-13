@@ -2,9 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import CollapseMenuItem from './CollapsMenuItem';
+import Constant from '../Utility/Constant';
 
 const CollapseMenu = (props) => {
   const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
+
+  const handleModal = () => {
+    props.handleModal(Constant.MODAL_SIGNUP_TYPE)
+  }
 
   if (props.navbarState === true) {
     return (
@@ -37,9 +42,8 @@ const CollapseMenu = (props) => {
         </NavLinksWrapper>
         <CollapseMenuBottom>
           <ButtonEz normal href="/">เข้าสู่ระบบ</ButtonEz>
-          <ButtonEz startButton href="/">เริ่มต้นใช้งาน</ButtonEz>
+          <ButtonEz startButton onClick={handleModal}>เริ่มต้นใช้งาน</ButtonEz>
         </CollapseMenuBottom>
-
       </CollapseWrapper>
       </Wrapper>
     );
@@ -71,7 +75,7 @@ const ButtonEz = styled.a`
     font-weight: 300;
     text-align: center;
     ${props => props.startButton && `
-        color: #ffffff;
+        color: #ffffff !important;
         flex: 0 0 65%;
         background: #4DA8F9;
         padding: 0.5rem 1.7rem;
