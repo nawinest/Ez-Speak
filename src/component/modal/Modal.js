@@ -30,7 +30,7 @@ export default class Modal extends React.Component {
               <InputWithTitle title="อีเมล" />
               <InputWithTitle title="รหัสผ่าน" />
               <InputWithTitle title="รหัสผลิตภัณฑ์หูฟัง (ถ้ามี)" />
-              <ButtonEz type="submit" startButton>สมัครสมาชิก</ButtonEz>
+              <ButtonEz type="submit">สมัครสมาชิก</ButtonEz>
             </form>
 
             <DescriptionInput>เมื่อกดสมัครสมาชิกถือว่าคุณได้ยอมรับ<span> กฏการใช้งาน </span>ของเรา</DescriptionInput>
@@ -152,19 +152,14 @@ const ModalWrapper = styled.div`
 `;
 
 
-const ButtonEz = styled.a`
-    ${props => props.startButton && `
-        color: #ffffff !important;
-        background: #4DA8F9;
-        margin: 6px 0px;
-        padding: 0.5rem 2rem;
-        width: 100%;
-        text-align: center;
-        border-radius: 5px;
-
-        & :hover {
-          text-decoration: none;
-          color: #ffffff !important;
-        }
-    `}
+const ButtonEz = styled.button`
+  margin-top: 6px;
+  height: 43px;
+  width: 100%;
+  border:none;
+  color: white !important;
+  cursor: pointer;
+  background: #4DA8F9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
 `;
