@@ -7,12 +7,13 @@ const InputWithTitle = (props) => {
         <TitleInput>
             {props.title}
         </TitleInput>
-        <Input></Input>
+        <Input type={props.type} name={props.name} onChange={props.onChange} value={props.value}></Input>
    </InputWrapper>
   );
 }
 
 const Input = styled.input`
+    padding-left: 0.35em;
     width: 100%;
     border: 1px solid #767676;
     box-sizing: border-box; 
