@@ -4,12 +4,15 @@ import styled from "styled-components";
 import RegisterForm from "./RegisterForm";
 import EmailVerification from "./EmailVerification";
 import InterestedSelection from "./InterestedSelection";
+import LoginForm from "./LoginForm";
 
 export default class Modal extends React.Component {
 
   state = {
     step: 1,
     name: "",
+    loginEmail: "",
+    loginPassword: "",
     email: "",
     password: "",
     productId: "",
@@ -36,6 +39,8 @@ export default class Modal extends React.Component {
     this.setState({
       step: 1,
       name: "",
+      loginEmail: "",
+      loginPassword: "",
       email: "",
       password: "",
       productId: "",
@@ -51,6 +56,10 @@ export default class Modal extends React.Component {
     this.setState({ interestedList: interestedList })
   }
 
+  handleLogin = () => {
+
+  }
+
   prevStep = () => {
     const { step } = this.state
     this.setState({
@@ -62,11 +71,11 @@ export default class Modal extends React.Component {
     if (this.props.show) {
       document.body.style.overflow = 'hidden';
     }
-
+    let component = <></>
     if (this.props.modalType === Constant.MODAL_SIGNUP_TYPE && this.props.show) {
       const { name, email, password, productId } = this.state
       const value = { name, email, password, productId }
-      let component = <></>
+
       switch (this.state.step) {
         case 1:
           component = <RegisterForm
@@ -94,17 +103,26 @@ export default class Modal extends React.Component {
           component = <div>defualt</div>
           break;
       }
-
-
-
-
-
+      return (
+        <ModalWrapper>
+          {component}
+        </ModalWrapper>
+      )
+    } else if (this.props.modalType === Constant.MODAL_SIGNIN_TYPE && this.props.show) {
+      const { loginEmail, LoginPassword } = this.state
+      const value = { loginEmail, LoginPassword }
+      component = <LoginForm
+        value={value}
+        handleModal={this.handleModal}
+        handleChange={this.handleChange}
+        handleLogin={this.handleLogin} />
       return (
         <ModalWrapper>
           {component}
         </ModalWrapper>
       )
     }
+
     return (
       null
     );

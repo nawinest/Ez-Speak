@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { Container} from 'react-bootstrap';
-
 import AdsWebsite from './AdsWebsite';
 import Footer from './Footer';
 
@@ -10,12 +8,13 @@ import { getCourse } from '../../actions/landing'
 import FeatureContent from './FeatureContent/FeatureContent';
 import LandingContent from './LandingContent/LandingContent';
 import LoggedInLandingContent from './LandingContent/LoggedInLandingContent';
-import Slider from '../../component/Carousel/Slider';
+import ContainerEz from '../../component/ContainerEz'
+
 
 class LandingPage extends Component {
     state = {
-        isLoggin: false,
-        nameUser: "นฤมล"
+        isLoggin: true,
+        nameUser: "ทรงเกียรติ"
     }
 
 
@@ -23,15 +22,14 @@ class LandingPage extends Component {
         return (
             <>
                 <FeatureBanner>
-                    <Container>
+                    <ContainerEz>
                         <FeatureContent isLoggin={this.state.isLoggin} nameUser={this.state.nameUser}/>
-                    </Container>
+                    </ContainerEz>
                 </FeatureBanner>
-                {!this.state.isLoggin ? <LoggedInLandingContent /> : <LandingContent /> }
+                    {this.state.isLoggin ? <LoggedInLandingContent /> : <LandingContent /> }
                 <SectionWrapper>
                     <AdsWebsite />
                 </SectionWrapper>
-                <Slider />
                 <SectionWrapper>
                     <Footer />
                 </SectionWrapper>

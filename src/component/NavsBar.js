@@ -14,8 +14,12 @@ const Navsbar = (props) => {
         transform: 'translate3d(0, 0, 0)',
     });
 
-    const handleModal = () => {
+    const handleRegister = () => {
         props.handleModal(Constant.MODAL_SIGNUP_TYPE)
+    }
+
+    const handleLoggin = () => {
+        props.handleModal(Constant.MODAL_SIGNIN_TYPE)
     }
 
     return (
@@ -27,11 +31,10 @@ const Navsbar = (props) => {
                         <InputEz name="" placeholder="คุณอยากเรียนอะไร?" />
                         <ButtonSearch type="submit"> <FontAwesomeIcon icon={faSearch} /> </ButtonSearch>
                     </FromSearch>
-                    {/* <NavLinks style={linkAnimation}> */}
                     <NavLinks>
                         <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
-                        <ButtonEz normal href="/">เข้าสู่ระบบ</ButtonEz>
-                        <ButtonEz startButton onClick={handleModal}>เริ่มต้นใช้งาน</ButtonEz>
+                        <ButtonEz normal onClick={handleLoggin}>เข้าสู่ระบบ</ButtonEz>
+                        <ButtonEz startButton onClick={handleRegister}>เริ่มต้นใช้งาน</ButtonEz>
                     </NavLinks>
                     <BurgerWrapper>
                         <BurgerMenu

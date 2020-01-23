@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import style from './slider.css'
 import Constants from '../../Utility/Constant';
 import classNames from 'classnames/bind';
-import CourseFeature from '../../scence/landing/CourseFeature';
 import CourseItem from './CourseItem';
+import styled from "styled-components";
 const cx = classNames.bind(style)
 
 class Slider extends Component {
@@ -69,13 +69,15 @@ class Slider extends Component {
             totalItems: this.state.data.length,
             sliderItems: this.state.data
         })
-    }
-
-    componentWillMount() {
         if (typeof (window) !== undefined) {
-            window.addEventListener('resize', this.updateSliderState);
+            window.addEventListener('resize', this.windowResize);
         }
     }
+
+    windowResize = () => {
+        this.updateSliderState()
+    }
+
 
     componentWillUnmount() {
         if (typeof (window) !== undefined) {
@@ -230,7 +232,7 @@ class Slider extends Component {
         })
         return (
             <div className="root">
-                <div className="slider">
+                <SliderWrapper>
                     <div className={sliderClass} ref="slider">
                         {
                             sliderItems.map((e, i) => {
@@ -248,23 +250,73 @@ class Slider extends Component {
                     </div>
                     {
                         click &&
-                        <div
-                            className="leftArrow arrow"
+                        <Arrow left
                             ref="leftArrow"
                             onClick={this.handleLeftArrowClick}>
                             <>{"<"}</>
-                        </div>
+                        </Arrow>
                     }
 
-                    <div
+                    <Arrow right
                         className="rightArrow arrow"
                         ref="rightArrow"
                         onClick={this.handleRightArrowClick}>
                         <>{">"}</>
-                    </div>
-                </div>
+                    </Arrow>
+                </SliderWrapper>
             </div>);
     }
 }
+
+const SliderWrapper = styled.div`
+    max-width: 100vw;
+    z-index: 1;
+    padding: 0 60px;
+    position: relative;
+
+    @media (max-width: 768px) {
+        padding: 0 20px;
+    }
+    
+`;
+
+
+const Arrow = styled.div`
+    position: absolute;
+    top: 0;
+    width: 55px;
+    cursor: pointer;
+    height: calc(100% - 6px);
+    z-index: 10;
+    font-size: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    ${props => props.left && `
+        left: 0;
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    `}
+
+    ${props => props.right && `
+        right: 0;
+        background: linear-gradient(to right, rgba(35, 35, 35, 0.5), rgba(35, 35, 35, 1));
+        background: rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    `}
+
+    
+`
 
 export default Slider;

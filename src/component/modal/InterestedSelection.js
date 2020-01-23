@@ -6,14 +6,11 @@ import backspace from '../../static_asset/backspace.svg';
 class InterestedSelection extends Component {
     state = {  }
 
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    }
     goBack = e => {
         e.preventDefault();
         this.props.prevStep();
     }
+    
     render() {
         return (
             <InterestedSelectionWrapper>

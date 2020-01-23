@@ -23,7 +23,7 @@ class FeatureContent extends Component {
         return (
             <FeatureContentWrapper>
 
-                <FeatureGreetingContent nameUser={this.state.nameUser}/>
+                <FeatureGreetingContent isLoggin nameUser={this.state.nameUser}/>
             
                 <FromSearch>
                     <InputEz name="" placeholder="ลอง “ฝึกร้องเพลง”" />
@@ -46,7 +46,6 @@ const FromSearch = styled.form`
 const FeatureContentWrapper = styled.div`
     color: #FFFFFF;
     width: 100%;
-    padding-left: 16px;
     font-size: 14px;
     font-weight: 300;
     line-height: 21px;

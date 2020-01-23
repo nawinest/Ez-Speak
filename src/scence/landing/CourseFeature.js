@@ -73,7 +73,7 @@ const CourseFeatureEz = styled.div`
 const ColEasy = styled.div`
     flex: 0 0 33.333333%;
     width: 100%;
-    padding-right: 15px;
+    padding:0 6px;
     @media (max-width: 800px) {
         flex: 0 0 50%;
     }

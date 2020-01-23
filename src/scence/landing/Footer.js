@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from "styled-components";
-import { Container } from 'react-bootstrap';
+import ContainerEz from '../../component/ContainerEz';
 
 const Footer = (props) => {
   return (
-    <Container>
+    <ContainerEz>
         <WrapFooter>
             <LineView></LineView>
             <FooterContent>
@@ -12,7 +12,7 @@ const Footer = (props) => {
                 <span>© 2019 ezSpeak All rights reserved.</span>
             </FooterContent>
         </WrapFooter>
-    </Container>
+    </ContainerEz>
   );
 }
 

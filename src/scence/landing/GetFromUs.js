@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import SimpleCard from '../../component/SimpleCard';
-import { Container } from 'react-bootstrap';
+import ContainerEz from '../../component/ContainerEz';
 
 class GetFromUs extends Component {
     state = {}
@@ -15,14 +15,14 @@ class GetFromUs extends Component {
                     </TopicHeader>
                     <DetailHeader>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </DetailHeader>
                 </HeaderCenter>
-                <Container>
+                <ContainerEz>
                     <CardSection>
                         <SimpleCard />
                         <SimpleCard />
                         <SimpleCard />
                         <SimpleCard />
                     </CardSection>
-                </Container>
+                </ContainerEz>
             </Wrapper>
         );
     }
@@ -50,8 +50,6 @@ const CardSection = styled.div`
     margin-right: -15px;
     margin-left: -15px;
 `;
-
-
 
 const HeaderCenter = styled.div`
     text-align: center;

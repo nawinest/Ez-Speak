@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import { Container } from 'react-bootstrap';
+import ContainerEz from '../../component/ContainerEz';
 class AdsWebsite extends Component {
     state = {}
     render() {
         return (
-            <Container>
+            <ContainerEz>
                 <AdsWebsiteWrapper>
                     <AdsWebsiteImage alt="dev" src="https://media-cdn.tripadvisor.com/media/photo-s/0c/13/c0/8d/street-bangkok-local.jpg" />
                     <CenterContent>
@@ -19,7 +19,7 @@ class AdsWebsite extends Component {
                         <SeemoreButton>คลิกเพื่อดูคอร์สอื่นๆ</SeemoreButton>
                     </RightContent>
                 </AdsWebsiteWrapper>
-            </Container>);
+            </ContainerEz>);
     }
 }
 
@@ -43,8 +43,8 @@ const SeemoreButton = styled.button`
     border: 2px solid #4DA8F9;
     background: none;
     font-weight: 500;
-    font-size: 10px;
-    line-height: 15px;
+    font-size: 14px;
+    line-height: 19px;
 `;
 
 const AdsWebsiteWrapper = styled.div`
@@ -80,7 +80,6 @@ const CenterContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     font-weight: normal;
     font-size: 14px;
     line-height: 19px;

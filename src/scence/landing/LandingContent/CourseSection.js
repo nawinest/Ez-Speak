@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 
-import styled from "styled-components";
-import FluidTopicHeader from '../../../component/FulidTopicHeader';
+import Slider from '../../../component/Carousel/Slider';
 
 class CourseSection extends Component {
     state = {}
     render() {
         return (
             <>
-                <SectionWrapper>
-                    <FluidTopicHeader topic bold>มาเริ่มต้นไปด้วยกัน</FluidTopicHeader>
-                    <FluidTopicHeader normal>คัดสรรจากสิ่งที่คุณสนใจ</FluidTopicHeader>
-                </SectionWrapper>
+                <Slider />
             </>
         );
     }
@@ -19,8 +15,3 @@ class CourseSection extends Component {
 
 export default CourseSection;
 
-
-const SectionWrapper = styled.div`
-    margin: 1em 0;
-    width: 100%;
-`;

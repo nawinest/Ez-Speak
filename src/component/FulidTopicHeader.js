@@ -12,6 +12,7 @@ const FluidTopicHeader = ({children, normal, topic, bold}) => {
             font-style: normal;
             line-height: 21px;
             color: #1F1F1F;
+            margin-bottom: 16px;
         `}
 
         ${props => topic && `
@@ -19,6 +20,7 @@ const FluidTopicHeader = ({children, normal, topic, bold}) => {
             font-weight: 500;
             font-size: 18px;
             line-height: 24px;
+            margin-bottom: 6px;
             color: #43BEF2;
         `}
 

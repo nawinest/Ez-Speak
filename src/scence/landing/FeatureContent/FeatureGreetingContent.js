@@ -2,15 +2,9 @@ import React from 'react';
 import styled from "styled-components";
 
 const FeatureGreetingContent = (props) => {
-    const isUserLoggin = () => {
-        if (props.nameUser === "" || props.nameUser === undefined) {
-            return false;
-        }
-        return true;
-    }
     return (
         <WrapperContent>
-            {!isUserLoggin() ? (
+            {!props.isLoggin ? (
                 <div>
                     <p>Take your first step with ezSpeak</p>
                     <span>
@@ -20,13 +14,6 @@ const FeatureGreetingContent = (props) => {
                 </div>
             ) : (<ContentWrapper> 
                     <Content> สวัสดี <span> {props.nameUser} </span> </Content>
-                    {/* <LevelBox>
-                        <LevelImage alt="dev" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTeXUrT_7jM89dyNslw5ndyBo2r9LAGjQSx4jEppjGtTSLOChFc" />
-                        <LevelContent>
-                            <p>ระดับปัจจุบันของคุณ</p>
-                            <h2>มือใหม่ 5</h2>
-                        </LevelContent>
-                    </LevelBox> */}
                 </ContentWrapper>)}
         </WrapperContent>
     );

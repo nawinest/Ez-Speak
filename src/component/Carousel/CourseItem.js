@@ -131,10 +131,6 @@ const CourseTitle = styled.h4`
         font-size: 16px;
     }
 
-    // overflow: hidden;
-    // text-overflow: ellipsis;
-    // white-space: unwrap;
-
     display: block!important;
     display: -webkit-box!important;
     -webkit-line-clamp: 2;

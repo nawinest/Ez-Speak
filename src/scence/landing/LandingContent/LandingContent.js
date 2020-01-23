@@ -5,15 +5,16 @@ import GetFromUs from '../GetFromUs';
 import StaffSection from '../StaffSection';
 import Constants from '../../../Utility/Constant';
 
-import { Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import styled from "styled-components";
+import ContainerEz from '../../../component/ContainerEz';
 
 class LandingContent extends Component {
-    state = {  }
-    render() { 
-        return ( 
+    state = {}
+    render() {
+        return (
             <>
-            <Container>
+                <ContainerEz>
                     <SectionWrapper2>
                         <CorseSuggestDetail>
                             <CorseSuggestDetailLeft>
@@ -31,31 +32,31 @@ class LandingContent extends Component {
 
                     <SectionWrapper>
                         <RowEasy>
-                            <CourseFeature 
+                            <CourseFeature
                                 imagesURL={"https://cdn-images-1.medium.com/max/800/1*1-n8b6qiAe7aAk1sEv4dww.png"}
                                 nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
                                 courseLink={"#"}
                                 courseType={Constants.NEWBIE_STUDENT}
                             />
-                            <CourseFeature 
+                            <CourseFeature
                                 imagesURL={"https://cdn-images-1.medium.com/max/800/1*BU3wN8rLVoDTamIWnaD_Og.png"}
                                 nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
                                 courseLink={"#"}
                                 courseType={Constants.MEDIUM_STUDENT}
                             />
-                            <CourseFeature 
+                            <CourseFeature
                                 imagesURL={"https://sites.google.com/site/littelgingdown/_/rsrc/1468866256433/hmapa-wolf/unnamed.png"}
                                 nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
                                 courseLink={"#"}
                                 courseType={Constants.EXPERT_STUDENT}
                             />
-                            <CourseFeature 
+                            <CourseFeature
                                 imagesURL={"https://i0.wp.com/www.docker.com/blog/wp-content/uploads/53dc73f1-1bfe-415c-a0e9-1f75507675de-1.jpg?zoom=2.625&ssl=1"}
                                 nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
                                 courseLink={"#"}
                                 courseType={Constants.EXPERT_STUDENT}
                             />
-                            <CourseFeature 
+                            <CourseFeature
                                 imagesURL={"https://miro.medium.com/max/2820/1*ovRuAuqPf4r2xpiWh71rUg.png"}
                                 nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวันฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
                                 courseLink={"#"}
@@ -64,22 +65,22 @@ class LandingContent extends Component {
                             <SeeMoreCourseFeature />
                         </RowEasy>
                     </SectionWrapper>
-                </Container>
+                </ContainerEz>
                 <SectionWrapper>
                     <GetFromUs />
                 </SectionWrapper>
                 <SectionWrapper>
                     <StaffSection />
                 </SectionWrapper>
-                </>
-         );
+            </>
+        );
     }
 }
- 
+
 export default LandingContent;
 
 
-const CorseSuggestDetail  = styled.div`
+const CorseSuggestDetail = styled.div`
     display: flex;
     @media (max-width: 769px) {
         flex-direction: column;
