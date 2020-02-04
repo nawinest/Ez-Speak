@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.18.0",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "react": "^16.12.0",
@@ -19,12 +20,14 @@
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
     "react-spring": "^8.0.27",
+    "react-swipeable": "^5.5.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "sweetalert2": "^9.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -4,6 +4,7 @@ import Constants from '../../Utility/Constant';
 import classNames from 'classnames/bind';
 import CourseItem from './CourseItem';
 import styled from "styled-components";
+import { Swipeable } from 'react-swipeable'
 const cx = classNames.bind(style)
 
 class Slider extends Component {
@@ -224,6 +225,7 @@ class Slider extends Component {
 
     }
 
+
     render() {
         const { sliderItems, moving, click } = this.state
         const sliderClass = cx({
@@ -232,38 +234,40 @@ class Slider extends Component {
         })
         return (
             <div className="root">
-                <SliderWrapper>
-                    <div className={sliderClass} ref="slider">
+                <Swipeable onSwipedLeft={this.handleRightArrowClick} onSwipedRight={this.handleLeftArrowClick}>
+                    <SliderWrapper>
+                        <div className={sliderClass} ref="slider">
+                            {
+                                sliderItems.map((e, i) => {
+                                    return (
+                                        <CourseItem
+                                            key={i}
+                                            data={e}
+                                            nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
+                                            courseLink={"#"}
+                                            courseType={Constants.NEWBIE_STUDENT}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
                         {
-                            sliderItems.map((e, i) => {
-                                return (
-                                    <CourseItem
-                                        key={i}
-                                        data={e}
-                                        nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                        courseLink={"#"}
-                                        courseType={Constants.NEWBIE_STUDENT}
-                                    />
-                                )
-                            })
+                            click &&
+                            <Arrow left
+                                ref="leftArrow"
+                                onClick={this.handleLeftArrowClick}>
+                                <>{"<"}</>
+                            </Arrow>
                         }
-                    </div>
-                    {
-                        click &&
-                        <Arrow left
-                            ref="leftArrow"
-                            onClick={this.handleLeftArrowClick}>
-                            <>{"<"}</>
-                        </Arrow>
-                    }
 
-                    <Arrow right
-                        className="rightArrow arrow"
-                        ref="rightArrow"
-                        onClick={this.handleRightArrowClick}>
-                        <>{">"}</>
-                    </Arrow>
-                </SliderWrapper>
+                        <Arrow right
+                            className="rightArrow arrow"
+                            ref="rightArrow"
+                            onClick={this.handleRightArrowClick}>
+                            <>{">"}</>
+                        </Arrow>
+                    </SliderWrapper>
+                </Swipeable>
             </div>);
     }
 }

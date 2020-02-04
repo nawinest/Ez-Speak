@@ -13,10 +13,13 @@ import ContainerEz from '../../component/ContainerEz'
 
 class LandingPage extends Component {
     state = {
-        isLoggin: true,
+        isLoggin: false,
         nameUser: "ทรงเกียรติ"
     }
 
+    componentDidMount() {
+        
+    }
 
     render() {
         return (

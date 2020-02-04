@@ -6,8 +6,7 @@ import LessonHeader from './LessonHeader'
 
 class LessonOverviewPage extends Component {
     state = {
-        isLoggin: true,
-        nameUser: "นฤมล"
+        
     }
 
 

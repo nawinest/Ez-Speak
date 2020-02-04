@@ -11,7 +11,8 @@ import store from './store'
 import Modal from './component/modal/Modal';
 import LessonOverviewPage from './scence/lesson_overview/LessonOverViewPage';
 import ContainerEz from './component/ContainerEz';
-
+import SearchPage from './scence/search/SearchPage';
+import NotFoundPage from './scence/not_found/NotFoundPage';
 
 class App extends Component {
   state = {
@@ -56,6 +57,8 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={LandingPage} />
               <Route path="/lesson" exact component={LessonOverviewPage} />
+              <Route path="/search/:page" exact component={SearchPage} />
+              <Route path="*"><NotFoundPage /></Route>
             </Switch>
           </div>
           <GlobalStyle />
@@ -65,4 +68,6 @@ class App extends Component {
   }
 }
 
-export default App
+
+
+export default App;

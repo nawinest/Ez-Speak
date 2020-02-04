@@ -7,7 +7,7 @@ class RegisterForm extends Component {
 
     continue = e => {
         e.preventDefault();
-        this.props.nextStep();
+        this.props.handleRegister();
     }
     
     render() {
@@ -28,7 +28,7 @@ class RegisterForm extends Component {
                 </ModalMenuHeader>
 
                 <form>
-                    <InputWithTitle title="ชื่อจริง" name="name" onChange={this.props.handleChange} value={this.props.value.name} />
+                    <InputWithTitle title="ชื่อผู้ใช้" name="username" onChange={this.props.handleChange} value={this.props.value.username} />
                     <InputWithTitle title="อีเมล" name="email" onChange={this.props.handleChange} value={this.props.value.email} />
                     <InputWithTitle title="รหัสผ่าน" name="password" type="password" onChange={this.props.handleChange} value={this.props.value.password} />
                     <InputWithTitle title="รหัสผลิตภัณฑ์หูฟัง (ถ้ามี)" name="productId" onChange={this.props.handleChange} value={this.props.value.productId} />

@@ -9,11 +9,6 @@ import CollapseMenu from "./CollapseMenu";
 import Constant from '../Utility/Constant';
 
 const Navsbar = (props) => {
-    const barAnimation = useSpring({
-        from: { transform: 'translate3d(0, -10rem, 0)' },
-        transform: 'translate3d(0, 0, 0)',
-    });
-
     const handleRegister = () => {
         props.handleModal(Constant.MODAL_SIGNUP_TYPE)
     }
@@ -24,7 +19,7 @@ const Navsbar = (props) => {
 
     return (
         <>
-            <NavBar style={barAnimation}>
+            <NavBar>
                 <FlexContainer>
                     <Brand />
                     <FromSearch>

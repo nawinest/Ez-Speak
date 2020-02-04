@@ -1,0 +1,1 @@
+module.exports.REGISTER_PATH_CUSTOMER = '/api-gateway/v1/user';
