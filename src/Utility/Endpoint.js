@@ -1,1 +1,2 @@
-module.exports.REGISTER_PATH_CUSTOMER = '/api-gateway/v1/user';
+module.exports.REGISTER_PATH_CUSTOMER = '/user';
+module.exports.CHECK_EMAIL_IS_EXITS = '/user/email/exists';

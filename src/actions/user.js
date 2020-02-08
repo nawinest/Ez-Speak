@@ -1,19 +1,21 @@
 
-import { START_LOADING, STOP_LOADING, SHOW_ERROR } from '../actions/type'
+import { START_LOADING, STOP_LOADING } from '../actions/type'
 import endpoint from '../Utility/Endpoint'
 import { APIManager } from '../Utility/APIManager'
 
 
 //Register 
 export const register = (username, password, email, showErrorDialog, gotoNextStep) => async dispatch => {
-    console.log(username, password, email)
     try {
+
+        console.log(password)
         const config = {
             headers: {
                 'Content-type': 'Application/json',
                 Authorization: ''
             }
         }
+
         const data = {
             firstName: "",
             lastName: "",

@@ -65,7 +65,7 @@ class Modal extends React.Component {
 
 	handleRegister = () => {
 		const { username, email, password } = this.state
-		this.props.register(username, email, password, this.showErrorDialog, this.nextStep)
+		this.props.register(username, password, email, this.showErrorDialog, this.nextStep)
 	}
 
 	showErrorDialog = () => {
