@@ -2,9 +2,20 @@ import React from 'react';
 import styled from "styled-components";
 
 const FeatureGreetingContent = (props) => {
+    let title = "สวัสดีตอนเช้า"
+    let today = new Date()
+    let curHr = today.getHours()
+    if (curHr < 12) {
+        title = "สวัสดีตอนเช้า"
+    } else if (curHr < 18) {
+        title = "สวัสดีตอนบ่าย"
+    } else {
+        title = "สวัสดีตอนค่ำ"
+    }
+
     return (
         <WrapperContent>
-            {!props.isLoggin ? (
+            {!props.isAuthenticated ? (
                 <div>
                     <p>Take your first step with ezSpeak</p>
                     <span>
@@ -12,51 +23,12 @@ const FeatureGreetingContent = (props) => {
                     <br></br>ด้วยตนเองอย่างง่ายดาย
                     </span>
                 </div>
-            ) : (<ContentWrapper> 
-                    <Content> สวัสดี <span> {props.nameUser} </span> </Content>
-                </ContentWrapper>)}
+            ) : (<ContentWrapper>
+                <Content> {title} <br></br> <span> {props.user.first_name} </span> </Content>
+            </ContentWrapper>)}
         </WrapperContent>
     );
 }
-
-
-const LevelContent = styled.div`
-    & p {
-        font-family: Kanit;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 10px;
-        line-height: 15px;
-        color: #494949;
-        margin: 0 !important;
-    }
-    & h2 {
-        margin: 0;
-        font-family: Kanit;
-        font-style: normal;
-        font-weight: 500;
-        color: green;
-        font-size: 18px;
-        line-height: 24px;
-    }
-`;
-
-const LevelImage = styled.img`
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    margin-right: 10.95px;
-`
-
-const LevelBox = styled.div`
-    padding: 13px;
-    display: flex;
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.35);
-    border-radius: 10px;
-
-`;
 
 const ContentWrapper = styled.div`
     display: flex;
@@ -88,7 +60,6 @@ const Content = styled.div`
 `;
 
 const WrapperContent = styled.div`
-    
 `;
 
 export default FeatureGreetingContent;

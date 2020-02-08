@@ -3,48 +3,66 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import CollapseMenuItem from './CollapsMenuItem';
 import Constant from '../Utility/Constant';
+import Dropdown from './Dropdown/Dropdown';
 
 const CollapseMenu = (props) => {
   const { open } = useSpring({ open: props.navbarState ? 0 : 1 });
 
-  const handleModal = () => {
+  const handleModalRegister = () => {
     props.handleModal(Constant.MODAL_SIGNUP_TYPE)
+  }
+
+  const handleModalLogin = () => {
+    props.handleModal(Constant.MODAL_SIGNIN_TYPE)
+  }
+
+  let buttonGroup = <></>
+  if (!props.isAuthenticated) {
+    buttonGroup =
+      <>
+        <CollapseMenuBottom>
+          <ButtonEz normal onClick={handleModalLogin}>เข้าสู่ระบบ</ButtonEz>
+          <ButtonEz startButton onClick={handleModalRegister}>เริ่มต้นใช้งาน</ButtonEz>
+        </CollapseMenuBottom>
+      </>
+  } else {
+    buttonGroup =
+      <>
+        <ButtonEz>
+          <Dropdown collapse={true} handleDropdown={props.handleDropdown} title={props.title} list={props.list} />
+        </ButtonEz>
+      </>
   }
 
   if (props.navbarState === true) {
     return (
       <Wrapper>
-      <CollapseWrapper style={{
-        transform: open.interpolate({
-          range: [0, 0.2, 0.3, 1],
-          output: [0, -20, 0, -200],
-        }).interpolate(openValue => `translate3d(0,0, ${openValue}px`),
-      }}
-      >
-        <CollapseMenuHeader>
-          <span>
-            เมนู
+        <CollapseWrapper style={{
+          transform: open.interpolate({
+            range: [0, 0.2, 0.3, 1],
+            output: [0, -20, 0, -200],
+          }).interpolate(openValue => `translate3d(0,0, ${openValue}px`),
+        }}
+        >
+          <CollapseMenuHeader>
+            <span>
+              เมนู
             </span>
-          
+
             <CloseBtn onClick={props.handleNavbar}>
               <span>&nbsp;</span>
               <span>&nbsp;</span>
               <span>&nbsp;</span>
             </CloseBtn>
-          
-        </CollapseMenuHeader>
-        <NavLinksWrapper>
-          <NavLinks onClick={props.handleNavbar}>
-            <li><CollapseMenuItem menuTitle={"คอร์สเรียนทั้งหมด"} /></li>
-            <li><CollapseMenuItem menuTitle={"เมนูอื่น ๆ 1"} /></li>
-            <li><CollapseMenuItem menuTitle={"เมนูอื่น ๆ 2"} /></li>
-          </NavLinks>
-        </NavLinksWrapper>
-        <CollapseMenuBottom>
-          <ButtonEz normal href="/">เข้าสู่ระบบ</ButtonEz>
-          <ButtonEz startButton onClick={handleModal}>เริ่มต้นใช้งาน</ButtonEz>
-        </CollapseMenuBottom>
-      </CollapseWrapper>
+
+          </CollapseMenuHeader>
+          <NavLinksWrapper>
+            <NavLinks onClick={props.handleNavbar}>
+              <li><CollapseMenuItem menuTitle={"คอร์สเรียนทั้งหมด"} /></li>
+            </NavLinks>
+          </NavLinksWrapper>
+          {buttonGroup}
+        </CollapseWrapper>
       </Wrapper>
     );
   }
@@ -61,7 +79,7 @@ const Wrapper = styled.div`
     position: fixed;
     top:0;
     left:0;
-    z-index: 1;
+    z-index: 999;
 `;
 const CollapseMenuBottom = styled.div`
     display: flex;

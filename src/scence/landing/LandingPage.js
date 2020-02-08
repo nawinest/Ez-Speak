@@ -13,23 +13,22 @@ import ContainerEz from '../../component/ContainerEz'
 
 class LandingPage extends Component {
     state = {
-        isLoggin: false,
-        nameUser: "ทรงเกียรติ"
     }
 
     componentDidMount() {
-        
+
     }
 
     render() {
+        const { isAuthenticated, user } = this.props.user
         return (
             <>
                 <FeatureBanner>
                     <ContainerEz>
-                        <FeatureContent isLoggin={this.state.isLoggin} nameUser={this.state.nameUser}/>
+                        <FeatureContent isAuthenticated={isAuthenticated} user={user} />
                     </ContainerEz>
                 </FeatureBanner>
-                    {this.state.isLoggin ? <LoggedInLandingContent /> : <LandingContent /> }
+                {isAuthenticated ? <LoggedInLandingContent /> : <LandingContent />}
                 <SectionWrapper>
                     <AdsWebsite />
                 </SectionWrapper>
@@ -63,6 +62,7 @@ const FeatureBanner = styled.div`
 
 const mapStateToProps = (state) => ({
     landing: state.landing,
+    user: state.user
 })
 
 export default connect(mapStateToProps, { getCourse })(LandingPage);

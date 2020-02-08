@@ -119,11 +119,6 @@ class Slider extends Component {
                 rightDataId.push(x - totalItems)
             }
         }
-
-        console.log('left', leftDataId)
-        console.log('center', centerDataId)
-        console.log('right', rightDataId)
-
         let selectIds = [...leftDataId, ...centerDataId, ...rightDataId]
         let sliderItems = []
 
@@ -159,7 +154,6 @@ class Slider extends Component {
     }
 
     handleLeftArrowClick = () => {
-        console.log("left")
         const { showItems, startId, totalItems, mv } = this.state
         let reducePrev = startId - showItems
         let resetStartId = 0
@@ -188,7 +182,6 @@ class Slider extends Component {
     }
 
     handleRightArrowClick = () => {
-        console.log("right")
         const { showItems, startId, totalItems, mv, click } = this.state
         let slider = this.refs.slider
         let plusNext = startId + showItems

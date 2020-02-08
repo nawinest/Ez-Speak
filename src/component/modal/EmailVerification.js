@@ -9,7 +9,7 @@ class EmailVerification extends Component {
 
     continue = e => {
         e.preventDefault();
-        this.props.nextStep();
+        this.props.handleVerifyEmail()
     }
 
     goBack = e => {
@@ -22,7 +22,6 @@ class EmailVerification extends Component {
             <EmailVerificationWrapper>
                 <ModalMenuHeader>
                     <ImageContain onClick={this.goBack} iconMargin src={backspace} widthSize="24px" heightSize="24px" alt="backspace" />
-
                     <span>
                         ยืนยันอีเมลของคุณ !
                 </span>
@@ -39,7 +38,7 @@ class EmailVerification extends Component {
                     <ContentDescription>เราได้ทำการส่งรหัสเพื่อยืนยันบัญชีไปยังอีเมลของคุณแล้ว กรุณานำรหัสที่ได้กรอกในช่องด้านล่างนี้</ContentDescription>
                 </Content>
 
-                <InputWithTitle title="รหัสยืนยัน" name="verifyValue" onChange={this.props.handleChange} value={this.props.value.verifyValue} />
+                <InputWithTitle title="รหัสยืนยัน" name="verifyCode" onChange={this.props.handleChange} value={this.props.value.verifyCode} />
                 <ButtonEz onClick={this.continue}> ต่อไป </ButtonEz>
                 <AlreadyHaveAccount>ยังไม่ได้รับรหัส? <span>ส่งอีเมลใหม่</span></AlreadyHaveAccount>
             </EmailVerificationWrapper>);

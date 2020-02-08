@@ -15,12 +15,13 @@ const InputWithTitle = (props) => {
 const Input = styled.input`
     padding-left: 0.35em;
     width: 100%;
-    border: 1px solid #767676;
+    border-color: hsl(0,0%,80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
     box-sizing: border-box; 
-    height: 43px;
-    border-radius: 6px;
+    height: 38px;
 `
-
 const InputWrapper = styled.div`
     width: 100%;
     height: auto;

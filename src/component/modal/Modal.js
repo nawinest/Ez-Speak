@@ -5,10 +5,10 @@ import RegisterForm from "./RegisterForm";
 import EmailVerification from "./EmailVerification";
 import InterestedSelection from "./InterestedSelection";
 import LoginForm from "./LoginForm";
-import { register } from '../../actions/user'
+import { register, activeNewUser, login } from '../../actions/user'
 import { connect } from 'react-redux'
-import Loading from "../Alert/Loading";
 import Swal from 'sweetalert2'
+import createHistory from 'history/createBrowserHistory'
 
 class Modal extends React.Component {
 	state = {
@@ -26,7 +26,7 @@ class Modal extends React.Component {
 	nextStep = () => {
 		const { step } = this.state
 
-		if (step === 3) {
+		if (step === 2) {
 			//close modal 
 			this.handleModal();
 			//save into database
@@ -47,7 +47,7 @@ class Modal extends React.Component {
 			email: "",
 			password: "",
 			productId: "",
-			verifyKey: ""
+			verifyCode: ""
 		})
 	}
 
@@ -59,8 +59,16 @@ class Modal extends React.Component {
 		this.setState({ interestedList: interestedList })
 	}
 
-	handleLogin = () => {
+	handleLogin = async () => {
+		const { loginEmail, loginPassword } = this.state
+		await this.props.login(loginEmail, loginPassword, this.showErrorDialog)
+		const history = createHistory();
+		history.go(0)
+	}
 
+	handleVerifyEmail = () => {
+		const { email, verifyCode } = this.state
+		this.props.activeNewUser(email, verifyCode, this.showErrorDialog, this.nextStep)
 	}
 
 	handleRegister = () => {
@@ -124,7 +132,7 @@ class Modal extends React.Component {
 					component = <EmailVerification
 						handleChange={this.handleChange}
 						value={value}
-						nextStep={this.nextStep}
+						handleVerifyEmail={this.handleVerifyEmail}
 						prevStep={this.prevStep}
 						handleModal={this.handleModal} />
 					break;
@@ -141,7 +149,6 @@ class Modal extends React.Component {
 			}
 			return (
 				<ModalWrapper>
-					{this.props.globalState.loading && <Loading />}
 					{component}
 				</ModalWrapper>
 			)
@@ -155,7 +162,6 @@ class Modal extends React.Component {
 				handleLogin={this.handleLogin} />
 			return (
 				<ModalWrapper>
-					{this.props.globalState.loading && <Loading />}
 					{component}
 				</ModalWrapper>
 			)
@@ -167,11 +173,10 @@ class Modal extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	user: state.user,
-	globalState: state.globalState
+	user: state.user
 })
 
-export default connect(mapStateToProps, { register })(Modal);
+export default connect(mapStateToProps, { register, activeNewUser, login })(Modal);
 
 
 const ModalWrapper = styled.div`

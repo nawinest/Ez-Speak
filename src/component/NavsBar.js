@@ -7,8 +7,31 @@ import Brand from "./Brands";
 import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
 import Constant from '../Utility/Constant';
+import { connect } from 'react-redux'
+import Dropdown from './Dropdown/Dropdown';
 
 const Navsbar = (props) => {
+
+
+    const handleDropdown = (id) => {
+        if (id === 1) {
+            props.handleLogout()
+        }
+    }
+
+    const menus = [
+        {
+            id: 0,
+            title: 'แก้ไขข้อมูลส่วนตัว',
+            key: 'edit_profile'
+        },
+        {
+            id: 1,
+            title: 'ออกจากระบบ',
+            key: 'logout'
+        }
+    ]
+
     const handleRegister = () => {
         props.handleModal(Constant.MODAL_SIGNUP_TYPE)
     }
@@ -16,6 +39,33 @@ const Navsbar = (props) => {
     const handleLoggin = () => {
         props.handleModal(Constant.MODAL_SIGNIN_TYPE)
     }
+
+    const { isAuthenticated, user } = props.user
+    let titleMainMenu = ""
+    if (user !== null) {
+        titleMainMenu = "คุณ " + user.first_name
+    }
+    
+
+    let buttonGroup = <></>
+    if (!isAuthenticated) {
+        buttonGroup =
+            <>
+                <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
+                <ButtonEz normal onClick={handleLoggin}>เข้าสู่ระบบ</ButtonEz>
+                <ButtonEz startButton onClick={handleRegister}>เริ่มต้นใช้งาน</ButtonEz>
+            </>
+    } else {
+        buttonGroup =
+            <>
+                <ButtonEz normal href="/">คอร์สเรียนทั้งหมด</ButtonEz>
+                <ButtonEz>
+                    <Dropdown collapse={false} handleDropdown={handleDropdown} title={titleMainMenu} list={menus} />
+                </ButtonEz>
+
+            </>
+    }
+
 
     return (
         <>
@@ -27,9 +77,7 @@ const Navsbar = (props) => {
                         <ButtonSearch type="submit"> <FontAwesomeIcon icon={faSearch} /> </ButtonSearch>
                     </FromSearch>
                     <NavLinks>
-                        <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
-                        <ButtonEz normal onClick={handleLoggin}>เข้าสู่ระบบ</ButtonEz>
-                        <ButtonEz startButton onClick={handleRegister}>เริ่มต้นใช้งาน</ButtonEz>
+                        {buttonGroup}
                     </NavLinks>
                     <BurgerWrapper>
                         <BurgerMenu
@@ -40,6 +88,11 @@ const Navsbar = (props) => {
                 </FlexContainer>
             </NavBar>
             <CollapseMenu
+                handleDropdown={handleDropdown}
+                title={titleMainMenu}
+                list={menus}
+                isAuthenticated={isAuthenticated}
+                user={user}
                 handleModal={props.handleModal}
                 navbarState={props.navbarState}
                 handleNavbar={props.handleNavbar}
@@ -48,7 +101,13 @@ const Navsbar = (props) => {
     )
 }
 
-export default Navsbar
+
+const mapStateToProps = (state) => ({
+    user: state.user,
+    globalState: state.globalState
+})
+
+export default connect(mapStateToProps, {})(Navsbar);
 
 const NavBar = styled(animated.nav)`
   width:100%;
@@ -64,9 +123,11 @@ const FlexContainer = styled.div`
 `;
 
 const NavLinks = styled(animated.ul)`
-  justify-self: end;
-  list-style-type: none;
-  margin: auto 0;
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    list-style-type: none;
+    margin: auto 0;
 `;
 
 
@@ -77,9 +138,6 @@ const ButtonEz = styled.a`
         margin-left: 1rem;
         padding: 0.5rem 2rem;
         border-radius: 5px;
-        @media (max-width: 768px) {
-            display: none;
-        }
     `}
 
     ${props => props.normal && `
@@ -93,10 +151,12 @@ const ButtonEz = styled.a`
         &:hover {
             text-decoration: none;
         }
-        @media (max-width: 768px) {
-            display: none;
-        }
+        
     `}
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 const BurgerWrapper = styled.div`

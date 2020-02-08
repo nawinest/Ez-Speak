@@ -16,7 +16,6 @@ class InterestedSelection extends Component {
             <InterestedSelectionWrapper>
                 <ModalMenuHeader>
                     <ImageContain onClick={this.goBack} iconMargin src={backspace} widthSize="24px" heightSize="24px" alt="backspace" />
-
                     <span>
                     เลือกความชอบของคุณ !
                     </span>
@@ -29,6 +28,7 @@ class InterestedSelection extends Component {
 
                 </ModalMenuHeader>
                 <Content>
+
                     <p>เลือกเท่าไหร่ก็ได้ตามที่คุณต้องการ</p>
                     
                 </Content>
