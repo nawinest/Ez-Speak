@@ -3,15 +3,33 @@ import CourseFeature from '../CourseFeature';
 import SeeMoreCourseFeature from '../SeeMoreCourseFeature';
 import GetFromUs from '../GetFromUs';
 import StaffSection from '../StaffSection';
-import Constants from '../../../Utility/Constant';
-
-import { Container } from 'react-bootstrap';
+import { connect } from 'react-redux'
 import styled from "styled-components";
 import ContainerEz from '../../../component/ContainerEz';
+import Constant from '../../../Utility/Constant';
 
 class LandingContent extends Component {
     state = {}
     render() {
+        // console.log("sss", this.props.courses)
+        let courseList = this.props.courses.map((item, index) => {
+            let level = Constant.NEWBIE_STUDENT
+            if ( item.level === 2 ) {
+                level = Constant.MEDIUM_STUDENT
+            } else if ( item.level === 3 )  {
+                level = Constant.EXPERT_STUDENT
+            }
+            return (
+                <CourseFeature
+                    key={index}
+                    id={item.course_id}
+                    imagesURL={item.cover_image_path}
+                    nameOfCourse={item.name}
+                    courseType={level}
+                />
+            )
+        })
+        
         return (
             <>
                 <ContainerEz>
@@ -32,36 +50,7 @@ class LandingContent extends Component {
 
                     <SectionWrapper>
                         <RowEasy>
-                            <CourseFeature
-                                imagesURL={"https://cdn-images-1.medium.com/max/800/1*1-n8b6qiAe7aAk1sEv4dww.png"}
-                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                courseLink={"#"}
-                                courseType={Constants.NEWBIE_STUDENT}
-                            />
-                            <CourseFeature
-                                imagesURL={"https://cdn-images-1.medium.com/max/800/1*BU3wN8rLVoDTamIWnaD_Og.png"}
-                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                courseLink={"#"}
-                                courseType={Constants.MEDIUM_STUDENT}
-                            />
-                            <CourseFeature
-                                imagesURL={"https://sites.google.com/site/littelgingdown/_/rsrc/1468866256433/hmapa-wolf/unnamed.png"}
-                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                courseLink={"#"}
-                                courseType={Constants.EXPERT_STUDENT}
-                            />
-                            <CourseFeature
-                                imagesURL={"https://i0.wp.com/www.docker.com/blog/wp-content/uploads/53dc73f1-1bfe-415c-a0e9-1f75507675de-1.jpg?zoom=2.625&ssl=1"}
-                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                courseLink={"#"}
-                                courseType={Constants.EXPERT_STUDENT}
-                            />
-                            <CourseFeature
-                                imagesURL={"https://miro.medium.com/max/2820/1*ovRuAuqPf4r2xpiWh71rUg.png"}
-                                nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวันฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                courseLink={"#"}
-                                courseType={Constants.MEDIUM_STUDENT}
-                            />
+                            {courseList}
                             <SeeMoreCourseFeature />
                         </RowEasy>
                     </SectionWrapper>
@@ -77,8 +66,12 @@ class LandingContent extends Component {
     }
 }
 
-export default LandingContent;
 
+const mapStateToProps = (state) => ({
+    
+})
+
+export default connect(mapStateToProps, {})(LandingContent);
 
 const CorseSuggestDetail = styled.div`
     display: flex;

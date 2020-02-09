@@ -6,24 +6,35 @@ import LessonDetail from './LessonDetail';
 
 class LessonHeader extends Component {
     state = {
-        imagesURL: this.props.imagesURL !== undefined ? this.props.imagesURL : "https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png",
-        nameOfCourse: this.props.nameOfCourse !== undefined ? this.props.nameOfCourse : "ขออภัยไม่สามารถดึงข้อมูลชื่อคอร์สได้",
-        courseType: this.props.courseType !== undefined ? this.props.courseType : Constants.NEWBIE_STUDENT
+        author: ""
     }
     render() {
+        const {
+            name,
+            cover_image_path,
+            level,
+            created_by
+        } = this.props.data
+        let username = created_by && created_by.username && created_by.username ? created_by.username : "ไม่มีชื่อผู้เขียน" 
+        let levelLabel = Constants.NEWBIE_STUDENT
+        if (level === 2) {
+            levelLabel = Constants.MEDIUM_STUDENT
+        } else if (level === 3) {
+            levelLabel = Constants.EXPERT_STUDENT
+        }
         return (
             <>
                 <ContainerEz isLessonHeader>
-                    <LessonHeaderWrapper background={this.state.courseType} backgroundImage={this.state.imagesURL}>
+                    <LessonHeaderWrapper background={levelLabel} backgroundImage={cover_image_path}>
                         <LessonHeaderDetail>
                             <div>
-                                <Tags color={this.state.courseType}>{this.state.courseType}</Tags>
-                                <CourseTitle>{this.state.nameOfCourse}</CourseTitle>
-                                <AuthorName><span>โดย</span> ธนาวิทย์ ศรีพงศักดิ์</AuthorName>
-                                <BuyButton color={this.state.courseType}>สมัครคอร์สนี้</BuyButton>
+                                <Tags color={levelLabel}>{levelLabel}</Tags>
+                                <CourseTitle>{name}</CourseTitle>
+                                <AuthorName><span>โดย</span> {username} </AuthorName>
+                                <BuyButton color={levelLabel}>สมัครคอร์สนี้</BuyButton>
                             </div>
                         </LessonHeaderDetail>
-                        <LessonDetailImg>
+                        <LessonDetailImg backgroundImage={cover_image_path} >
                             <LessonImg />
                         </LessonDetailImg>
                     </LessonHeaderWrapper>
@@ -174,7 +185,7 @@ const LessonHeaderDetail = styled.div`
 
 const LessonDetailImg = styled.div`
     flex: 0 0 42%;
-    background-image: url(https://i.udemycdn.com/notices/home_banner/image/4d2b4fde-c9b9-442c-9a1b-9f03fc0b3cf9.jpg);
+    background-image: ${props => props.backgroundImage && `url(${props.backgroundImage})`};
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

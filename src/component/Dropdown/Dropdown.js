@@ -54,7 +54,7 @@ class Dropdown extends Component {
                     }
                 </div>
                 {listOpen && <DDList isCollapse={collapse} onClick={e => e.stopPropagation()}>
-                    {list.map((item) => (
+                    {list.map((item, index) => (
                         <li className="dd-list-item" onClick={() => this.props.handleDropdown(item.id)} key={item.id}>{item.title}</li>
                     ))}
                 </DDList>}

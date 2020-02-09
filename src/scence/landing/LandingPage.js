@@ -4,23 +4,21 @@ import AdsWebsite from './AdsWebsite';
 import Footer from './Footer';
 
 import { connect } from 'react-redux'
-import { getCourse } from '../../actions/landing'
+import { getCourseSuggestion } from '../../actions/course'
 import FeatureContent from './FeatureContent/FeatureContent';
 import LandingContent from './LandingContent/LandingContent';
 import LoggedInLandingContent from './LandingContent/LoggedInLandingContent';
 import ContainerEz from '../../component/ContainerEz'
 
-
 class LandingPage extends Component {
-    state = {
-    }
-
+  
     componentDidMount() {
-
+        this.props.getCourseSuggestion(["sport"])
     }
 
     render() {
         const { isAuthenticated, user } = this.props.user
+        const { coursesSuggestion } = this.props.course
         return (
             <>
                 <FeatureBanner>
@@ -28,7 +26,7 @@ class LandingPage extends Component {
                         <FeatureContent isAuthenticated={isAuthenticated} user={user} />
                     </ContainerEz>
                 </FeatureBanner>
-                {isAuthenticated ? <LoggedInLandingContent /> : <LandingContent />}
+                {isAuthenticated ? <LoggedInLandingContent /> : <LandingContent courses={coursesSuggestion}/>}
                 <SectionWrapper>
                     <AdsWebsite />
                 </SectionWrapper>
@@ -39,6 +37,14 @@ class LandingPage extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    landing: state.landing,
+    user: state.user,
+    course: state.course
+})
+
+export default connect(mapStateToProps, { getCourseSuggestion })(LandingPage);
 
 const SectionWrapper = styled.div`
     margin: 1em 0;
@@ -60,9 +66,3 @@ const FeatureBanner = styled.div`
 `;
 
 
-const mapStateToProps = (state) => ({
-    landing: state.landing,
-    user: state.user
-})
-
-export default connect(mapStateToProps, { getCourse })(LandingPage);

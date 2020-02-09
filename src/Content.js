@@ -48,7 +48,7 @@ class Content extends Component {
     render() {
         return (
             <Router>
-                {this.props.globalState.loading && <Loading />}
+                {(this.props.globalState.loading || this.props.globalState.loadingUser || this.props.globalState.loadingCourse) && <Loading />}
                 <div>
                     <Modal
                         show={this.state.modalOpen}
@@ -68,6 +68,7 @@ class Content extends Component {
                         <Route path="/" exact component={LandingPage} />
                         <Route path="/lesson" exact component={LessonOverviewPage} />
                         <Route path="/search/:page" exact component={SearchPage} />
+                        <Route path="/course/:course_id" exact component={LessonOverviewPage} />
                         <Route path="/user/management/course" exact component={ManangementCoursePage} />
                         <Route path="*"><NotFoundPage /></Route>
                     </Switch>

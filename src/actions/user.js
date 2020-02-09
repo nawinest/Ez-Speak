@@ -6,8 +6,6 @@ import { APIManager, ValidateResponse } from '../Utility/APIManager'
 //Register 
 export const register = (username, password, email, showErrorDialog, gotoNextStep) => async dispatch => {
     try {
-
-
         const config = {
             headers: {
                 'Content-type': 'Application/json',
@@ -27,7 +25,10 @@ export const register = (username, password, email, showErrorDialog, gotoNextSte
         }
 
         await dispatch({
-            type: START_LOADING
+            type: START_LOADING,
+            payload: {
+                type: "user"
+            }
         })
 
         // rigister
@@ -35,7 +36,10 @@ export const register = (username, password, email, showErrorDialog, gotoNextSte
         gotoNextStep()
 
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     } catch (e) {
         console.log(e)
@@ -43,7 +47,10 @@ export const register = (username, password, email, showErrorDialog, gotoNextSte
             showErrorDialog()
         }
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     }
 }
@@ -60,7 +67,10 @@ export const login = (email, password, showErrorDialog) => async dispatch => {
 
         const headerBase64 = btoa(email + ":" + password)
         await dispatch({
-            type: START_LOADING
+            type: START_LOADING,
+            payload: {
+                type: "user"
+            }
         })
 
         const configLogin = {
@@ -78,7 +88,10 @@ export const login = (email, password, showErrorDialog) => async dispatch => {
         })
 
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     } catch (e) {
         console.log(e)
@@ -86,7 +99,10 @@ export const login = (email, password, showErrorDialog) => async dispatch => {
             showErrorDialog()
         }
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     }
 }
@@ -106,7 +122,10 @@ export const activeNewUser = (email, verifyCode, showErrorDialog, gotoNextStep) 
 
 
     await dispatch({
-        type: START_LOADING
+        type: START_LOADING,
+        payload: {
+            type: "user"
+        }
     })
 
     // rigister
@@ -118,7 +137,10 @@ export const activeNewUser = (email, verifyCode, showErrorDialog, gotoNextStep) 
     });
 
     await dispatch({
-        type: STOP_LOADING
+        type: STOP_LOADING,
+        payload: {
+            type: "user"
+        }
     })
 
 }
@@ -126,7 +148,10 @@ export const activeNewUser = (email, verifyCode, showErrorDialog, gotoNextStep) 
 export const loadUser = () => async dispatch => {
     try {
         await dispatch({
-            type: START_LOADING
+            type: START_LOADING,
+            payload: {
+                type: "user"
+            }
         })
 
         let access_token = localStorage.getItem("access_token")
@@ -135,9 +160,12 @@ export const loadUser = () => async dispatch => {
                 type: USER_LOADED_FAILED
             })
             await dispatch({
-                type: STOP_LOADING
+                type: STOP_LOADING,
+                payload: {
+                    type: "user"
+                }
             })
-            return;
+            return
         }
 
         const configUser = {
@@ -147,30 +175,26 @@ export const loadUser = () => async dispatch => {
             }
         }
 
-        await dispatch({
-            type: START_LOADING
-        })
-
         // get user profile
         const response = await APIManager.get(endpoint.GET_USER_PROFILE, configUser)
-
-        //handle error format of response
-        if (!ValidateResponse(response)) {
-            
-        }
-        
         await dispatch({
             type: USER_LOADED,
             payload: response.data.content[0]
         })
 
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     } catch (e) {
         console.log(e)
         await dispatch({
-            type: STOP_LOADING
+            type: STOP_LOADING,
+            payload: {
+                type: "user"
+            }
         })
     }
 }
