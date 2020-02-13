@@ -42,15 +42,22 @@ class Dropdown extends Component {
     }
 
     render() {
-        const { list, collapse } = this.props
+        const { list, collapse, type } = this.props
         const { listOpen, headerTitle } = this.state
         return (
             <DDWrapper isCollapse={collapse}>
                 <div className="dd-header" onClick={() => this.toggleList()}>
-                    <div className="dd-header-title">{headerTitle}</div>
+                    {type !== "main" ?
+                        <DDTitle>{headerTitle}</DDTitle> :
+                        <DDTitle>
+                            <span>{headerTitle}</span>
+                            <SubMenu>มือใหม่ 5</SubMenu>
+                        </DDTitle>
+                    }
+
                     {listOpen
-                        ? <FontAwesomeIcon icon={faAngleUp} /> 
-                        : <FontAwesomeIcon icon={faAngleDown} /> 
+                        ? <FontAwesomeIcon icon={faAngleUp} />
+                        : <FontAwesomeIcon icon={faAngleDown} />
                     }
                 </div>
                 {listOpen && <DDList isCollapse={collapse} onClick={e => e.stopPropagation()}>
@@ -63,10 +70,28 @@ class Dropdown extends Component {
     }
 }
 
+const DDTitle = styled.div`
+    font-weight: 500;
+    margin-right: 10px;
+    text-align: right;
+    @media (max-width: 769px) {
+        text-align: left;
+    }
+`;
+
+const SubMenu = styled.div`
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: -10px;
+    line-height: 16px;
+    color: #2EDD7A;
+`;
+
 const DDList = styled.ul`
     margin:0;
     position: absolute;
     width: 100%;
+    max-width: 300px;
     top: 60px;
     z-index: 20;
     border-top: none;
@@ -77,6 +102,9 @@ const DDList = styled.ul`
     max-height: 215px;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+    -webkit-box-shadow: -2px -2px 32px -8px rgba(0,0,0,0.45);
+    -moz-box-shadow: -2px -2px 32px -8px rgba(0,0,0,0.45);
+    box-shadow: -2px -2px 32px -8px rgba(0,0,0,0.45);
     ${props => {
         if (props.isCollapse) {
             return `top: -64px;padding:0`
@@ -91,7 +119,8 @@ const DDWrapper = styled.div`
     -ms-user-select: none;
     user-select: none;
     position: relative;
-    width: 222px;
+    width: 100%;
+    // min-width: 200px;
     ${props => {
         if (props.isCollapse) {
             return `width: 100%;`

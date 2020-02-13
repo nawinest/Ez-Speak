@@ -8,6 +8,11 @@ class LessonHeader extends Component {
     state = {
         author: ""
     }
+
+    handleEnrollCourse = () => {
+        this.props.handleEnrollCourse()
+    }
+
     render() {
         const {
             name,
@@ -31,7 +36,7 @@ class LessonHeader extends Component {
                                 <Tags color={levelLabel}>{levelLabel}</Tags>
                                 <CourseTitle>{name}</CourseTitle>
                                 <AuthorName><span>โดย</span> {username} </AuthorName>
-                                <BuyButton color={levelLabel}>สมัครคอร์สนี้</BuyButton>
+                                <BuyButton onClick={this.handleEnrollCourse} color={levelLabel}>สมัครคอร์สนี้</BuyButton>
                             </div>
                         </LessonHeaderDetail>
                         <LessonDetailImg backgroundImage={cover_image_path} >
@@ -40,7 +45,7 @@ class LessonHeader extends Component {
                     </LessonHeaderWrapper>
                 </ContainerEz>
                 <ContainerEz>
-                    <LessonDetail />
+                    <LessonDetail data={this.props.data}/>
                 </ContainerEz>
             </>
         );

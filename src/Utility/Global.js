@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import Swal from 'sweetalert2'
+
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');;
   *,
@@ -46,7 +47,7 @@ export const showErrorDialog = (text) => {
     timerProgressBar: true,
     showCancelButton: false,
     showConfirmButton: false,
-      showCloseButton: false,
+    showCloseButton: false,
     onBeforeOpen: () => {
       timerInterval = setInterval(() => {
         const content = Swal.getContent()
@@ -62,4 +63,27 @@ export const showErrorDialog = (text) => {
       clearInterval(timerInterval)
     }
   })
+}
+
+export const showMixinDialog = (text) => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  Toast.fire({
+    icon: 'success',
+    title: text ?? ""
+  })
+}
+
+export const redirect404 = (text) => {
+  window.location.href = "/404";
 }

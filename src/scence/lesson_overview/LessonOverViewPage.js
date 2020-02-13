@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from '../landing/Footer';
 import LessonHeader from './LessonHeader'
 import { connect } from 'react-redux'
-import { getCourseDetail } from '../../actions/course'
+import { getCourseDetail, enrollCourse } from '../../actions/course'
 
 
 class LessonOverviewPage extends Component {
@@ -12,7 +12,7 @@ class LessonOverviewPage extends Component {
     }
 
     componentDidMount = async () => {
-        const data = await this.props.getCourseDetail("CO_00121")
+        const data = await this.props.getCourseDetail(this.props.match.params.course_id || '')
         if (data && data[0]) {
             this.setState({
                 data: data[0]
@@ -20,12 +20,16 @@ class LessonOverviewPage extends Component {
         }
     }
 
+    handleEnrollCourse = () => {
+        this.props.enrollCourse()
+    }
+
     render() {
         const { data } = this.state
         return (
             <>
                 <SectionWrapper>
-                    <LessonHeader data={data} />
+                    <LessonHeader handleEnrollCourse={this.handleEnrollCourse} data={data} />
                 </SectionWrapper>
 
                 <SectionWrapper>
@@ -42,7 +46,7 @@ const mapStateToProps = (state) => ({
     globalState: state.globalState
 })
 
-export default connect(mapStateToProps, { getCourseDetail })(LessonOverviewPage);
+export default connect(mapStateToProps, { getCourseDetail, enrollCourse })(LessonOverviewPage);
 
 const SectionWrapper = styled.div`
     margin: 25px 0;

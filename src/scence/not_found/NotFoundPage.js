@@ -1,11 +1,10 @@
 import React from 'react';
-import styled from "styled-components";
 
-const NotFoundPage = ({children}) => {
+const NotFoundPage = ({ children }) => {
 
     return (
         <div>
-            Not Found
+            404
         </div>
     );
 }

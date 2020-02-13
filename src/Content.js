@@ -3,8 +3,7 @@ import Navbar from "./component/NavsBar";
 import GlobalStyle from './Utility/Global';
 
 import LandingPage from './scence/landing/LandingPage';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Modal from './component/modal/Modal';
 import LessonOverviewPage from './scence/lesson_overview/LessonOverViewPage';
 import ContainerEz from './component/ContainerEz';
@@ -15,6 +14,7 @@ import { connect } from 'react-redux'
 import { loadUser, logout } from './actions/user'
 import Loading from './component/Alert/Loading';
 import ManangementCoursePage from './scence/management_course/ManangementCoursePage';
+import ProfilePage from './scence/management/profile/ProfilePage';
 
 class Content extends Component {
     state = {}
@@ -43,6 +43,7 @@ class Content extends Component {
 
     handleLogout = () => {
         this.props.logout()
+        window.location.href = "/"
     }
 
     render() {
@@ -70,7 +71,9 @@ class Content extends Component {
                         <Route path="/search/:page" exact component={SearchPage} />
                         <Route path="/course/:course_id" exact component={LessonOverviewPage} />
                         <Route path="/user/management/course" exact component={ManangementCoursePage} />
-                        <Route path="*"><NotFoundPage /></Route>
+                        <Route path="/user/profile" exact component={ProfilePage} />
+                        <Route path='/404' component={NotFoundPage} />
+                        <Redirect from='*' to='/404' />
                     </Switch>
                 </div>
                 <GlobalStyle />

@@ -5,12 +5,15 @@ import {
     LOGOUT_SUCCESS,
     LOGIN_FAILED,
     USER_LOADED,
-    USER_LOADED_FAILED
+    USER_LOADED_FAILED,
+    UPDATE_PROFILE_FAILED,
+    UPDATE_PROFILE_SUCCESS
 } from '../actions/type'
 
 const initialState = {
     user: null,
-    isAuthenticated: false
+    isAuthenticated: false,
+    isUpdateProfile: false
 }
 
 export default function (state = initialState, action) {
@@ -28,9 +31,17 @@ export default function (state = initialState, action) {
             return {
                 ...state, user: payload, isAuthenticated: true
             }
+        case UPDATE_PROFILE_SUCCESS:
+            return {
+                ...state, isUpdateProfile: true
+            }
+        case UPDATE_PROFILE_FAILED:
+            return {
+                ...state, isUpdateProfile: false
+            }
         case USER_LOADED_FAILED:
             return {
-                ...state, user: null , isAuthenticated: false
+                ...state, user: null, isAuthenticated: false
             }
         case LOGIN_SUCCESS:
             localStorage.setItem('access_token', payload.access_token)

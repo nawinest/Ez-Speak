@@ -29,7 +29,7 @@ const CollapseMenu = (props) => {
     buttonGroup =
       <>
         <ButtonEz>
-          <Dropdown collapse={true} handleDropdown={props.handleDropdown} title={props.title} list={props.list} />
+          <Dropdown collapse={true} type="main" handleDropdown={props.handleDropdown} title={props.title} list={props.list} />
         </ButtonEz>
       </>
   }

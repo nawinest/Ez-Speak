@@ -1,8 +1,8 @@
 
-import { START_LOADING, STOP_LOADING, LOADED_COURSE_SUGGESTION } from '../actions/type'
+import { START_LOADING, STOP_LOADING, LOADED_COURSE_SUGGESTION, ENROLL_COURSE } from '../actions/type'
 import endpoint from '../Utility/Endpoint'
 import { APIManager } from '../Utility/APIManager'
-import { showErrorDialog } from '../Utility/Global'
+import { showErrorDialog, redirect404 } from '../Utility/Global'
 
 //create course
 export const createCourse = (data) => async dispatch => {
@@ -109,17 +109,49 @@ export const getCourseDetail = (course_id) => async dispatch => {
             type: START_LOADING
         })
 
-        // create course
+        // get detail
         const response = await APIManager.get(endpoint.GET_COURSE_DETAIL + "?course_id=" + course_id, configGetCourse)
-        
+        if (response.data && response.data.content && !response.data.content[0]) {
+            redirect404()
+        }
+
         await dispatch({
             type: STOP_LOADING
         })
 
-        // return response.data.content
+        return response.data.content
     } catch (e) {
         showErrorDialog()
+        console.log(e)
+        await dispatch({
+            type: STOP_LOADING
+        })
+    }
+}
 
+//enroll
+export const enrollCourse = (course_id) => async dispatch => {
+    try {
+        let access_token = localStorage.getItem("access_token")
+        const configEnroll = {
+            headers: {
+                'Content-type': 'Application/json',
+                Authorization: access_token
+            }
+        }
+
+        await dispatch({
+            type: START_LOADING
+        })
+
+        await APIManager.post(endpoint.ENROLL_COURSE, {course_id: course_id}, configEnroll)
+        await dispatch({
+            type: STOP_LOADING
+        })
+
+    } catch (e) {
+        // const errorStatus = e.response.status
+        showErrorDialog()
         await dispatch({
             type: STOP_LOADING
         })

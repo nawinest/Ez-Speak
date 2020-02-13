@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import { useSpring, animated } from "react-spring";
+import { animated } from "react-spring";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import Brand from "./Brands";
@@ -16,6 +16,8 @@ const Navsbar = (props) => {
     const handleDropdown = (id) => {
         if (id === 1) {
             props.handleLogout()
+        } else if (id === 0) {
+            window.location.href = '/user/profile'
         }
     }
 
@@ -60,7 +62,7 @@ const Navsbar = (props) => {
             <>
                 <ButtonEz normal href="/">คอร์สเรียนทั้งหมด</ButtonEz>
                 <ButtonEz>
-                    <Dropdown collapse={false} handleDropdown={handleDropdown} title={titleMainMenu} list={menus} />
+                    <Dropdown type="main" collapse={false} handleDropdown={handleDropdown} title={titleMainMenu} list={menus} />
                 </ButtonEz>
 
             </>

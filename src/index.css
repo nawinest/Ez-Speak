@@ -57,7 +57,7 @@ body {
   border-radius: 3px;
   cursor: default;
   position: relative;
-  margin: 2px 20px;
+  margin: 10px 20px;
   background-color: #fff;
 }
 
@@ -77,7 +77,6 @@ body {
   line-height: 1rem;
   cursor: default;
   display: inline-block;
-  white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
 }
@@ -98,12 +97,8 @@ body {
   position: relative;
   width: 265px;
 }
-.dd-wrapper-single .dd-header {
-  border: 1px solid #ccc;
-}
-.dd-wrapper-single .dd-header .dd-header-name {
-  font-weight: 400;
-}
+
+
 .dd-wrapper-single .dd-list {
   border: 1px solid #ccc;
   border-top: none;

@@ -1,9 +1,22 @@
 import React from 'react'
 import styled from "styled-components";
+import {
+  Link
+} from "react-router-dom";
 
 const Brand = () => {
+
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #43BEF2;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: #43BEF2;
+    }
+  `;
+
   return (
-        <BrandText><span>ez</span>Speak</BrandText>
+    <BrandText><StyledLink to="/"><span>ez</span>Speak</StyledLink></BrandText>
   )
 }
 
@@ -16,7 +29,6 @@ const BrandText = styled.h2`
   font-weight: 600;
   font-size: 18px;
   line-height: 22px
-  color: #43BEF2;
   & span {
     color: #000000;
     font-weight: normal;
