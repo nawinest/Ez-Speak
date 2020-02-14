@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import Constants from '../../Utility/Constant';
+import {
+    Link
+} from "react-router-dom";
 
 class CourseItem extends Component {
     state = {
@@ -9,33 +12,46 @@ class CourseItem extends Component {
         courseType: this.props.courseType !== undefined ? this.props.courseType : Constants.NEWBIE_STUDENT
     }
 
+    componentDidMount() {
+    }
+
     render() {
-        const data = this.props.data
-        const img = data.img
         return (
             <Wrapper>
-                <WrapperInner>
-                    <CourseFeatureEz background={this.state.courseType}>
-                        <div>
-                            <ImageCourseFeature imageURL={img} alt="W3Schools.com"></ImageCourseFeature>
-                        </div>
-                        <CourseContent>
-                            <div><Tags color={this.state.courseType}>{this.state.courseType}</Tags></div>
-                            <div><CourseTitle>
-                                {
-                                    this.state.nameOfCourse
-                                }
-                            </CourseTitle></div>
-                            <SeemoreButton>เรียนรู้เพิ่มเติม</SeemoreButton>
-                        </CourseContent>
-                    </CourseFeatureEz>
-                </WrapperInner>
+                <StyledLink to={`/course/${this.props.id}`}>
+                    <WrapperInner>
+                        <CourseFeatureEz background={this.state.courseType}>
+                            <div>
+                                <ImageCourseFeature imageURL={this.state.imagesURL} alt="W3Schools.com"></ImageCourseFeature>
+                            </div>
+                            <CourseContent>
+                                <div><Tags color={this.state.courseType}>{this.state.courseType}</Tags></div>
+                                <div><CourseTitle>
+                                    {
+                                        this.state.nameOfCourse
+                                    }
+                                </CourseTitle></div>
+                                <SeemoreButton><StyledLink to={`/course/${this.props.id}`}>เรียนรู้เพิ่มเติม</StyledLink></SeemoreButton>
+                            </CourseContent>
+                        </CourseFeatureEz>
+                    </WrapperInner>
+                </StyledLink>
             </Wrapper>
         );
     }
 }
 
 export default CourseItem;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: white;
+    }
+`;
+
 
 const WrapperInner = styled.div`
     margin: 0 5px;
@@ -81,30 +97,30 @@ const CourseFeatureEz = styled.div`
 
 const Wrapper = styled.div`
     display: inline-block;
-    width: 50%;
+    width: 100%;
     height: 100%;
     position: relative;
     z-index: 1;
 
-    @media (min-width: 600px) {
-        width: calc(100%/2);
-    }
+    // @media (min-width: 600px) {
+    //     width: calc(100%/2);
+    // }
 
-    @media (min-width: 768px) {
-        width: calc(100%/3);
-    }
+    // @media (min-width: 768px) {
+    //     width: calc(100%/3);
+    // }
 
-    @media (min-width: 980px) {
-        width: calc(100%/3);
-    }
+    // @media (min-width: 980px) {
+    //     width: calc(100%/3);
+    // }
 
-    @media (min-width: 1200px) {
-        width: calc(100%/3);
-    }
+    // @media (min-width: 1200px) {
+    //     width: calc(100%/3);
+    // }
 
-    @media (min-width: 1800px) {
-        width: calc(100%/3);
-    }
+    // @media (min-width: 1800px) {
+    //     width: calc(100%/3);
+    // }
 
 `;
 

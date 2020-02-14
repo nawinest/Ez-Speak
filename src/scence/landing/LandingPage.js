@@ -26,7 +26,7 @@ class LandingPage extends Component {
                         <FeatureContent isAuthenticated={isAuthenticated} user={user} />
                     </ContainerEz>
                 </FeatureBanner>
-                {isAuthenticated ? <LoggedInLandingContent /> : <LandingContent courses={coursesSuggestion}/>}
+                {isAuthenticated ? <LoggedInLandingContent courses={coursesSuggestion}/> : <LandingContent courses={coursesSuggestion}/>}
                 <SectionWrapper>
                     <AdsWebsite />
                 </SectionWrapper>

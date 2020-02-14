@@ -53,7 +53,7 @@ const Navsbar = (props) => {
     if (!isAuthenticated) {
         buttonGroup =
             <>
-                <ButtonEz normal href="/">คอร์สเรียน</ButtonEz>
+                <ButtonEz normal href="/">คอร์สเรียนทั้งหมด</ButtonEz>
                 <ButtonEz normal onClick={handleLoggin}>เข้าสู่ระบบ</ButtonEz>
                 <ButtonEz startButton onClick={handleRegister}>เริ่มต้นใช้งาน</ButtonEz>
             </>

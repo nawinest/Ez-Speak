@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import Constants from '../../Utility/Constant';
+import {
+    Link
+} from "react-router-dom";
+
 
 class CourseFeature extends Component {
-    state = { 
-        imagesURL: this.props.imagesURL !== undefined ? this.props.imagesURL : "https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png" ,
-        nameOfCourse: this.props.nameOfCourse  !== undefined ? this.props.nameOfCourse  : "ขออภัยไม่สามารถดึงข้อมูลชื่อคอร์สได้",
-        courseType: this.props.courseType  !== undefined ? this.props.courseType  : Constants.NEWBIE_STUDENT
+    state = {
+        imagesURL: this.props.imagesURL !== undefined ? this.props.imagesURL : "https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png",
+        nameOfCourse: this.props.nameOfCourse !== undefined ? this.props.nameOfCourse : "ขออภัยไม่สามารถดึงข้อมูลชื่อคอร์สได้",
+        courseType: this.props.courseType !== undefined ? this.props.courseType : Constants.NEWBIE_STUDENT,
+        id: this.props.id
     }
 
-    render() { 
-        return ( 
+    render() {
+        return (
             <ColEasy>
                 <CourseFeatureEz background={this.state.courseType}>
                     <div>
@@ -19,11 +24,11 @@ class CourseFeature extends Component {
                     <CourseContent>
                         <div><Tags color={this.state.courseType}>{this.state.courseType}</Tags></div>
                         <div><CourseTitle>
-                        {
-                            this.state.nameOfCourse
-                        }
+                            {
+                                this.state.nameOfCourse
+                            }
                         </CourseTitle></div>
-                        <SeemoreButton>เรียนรู้เพิ่มเติม</SeemoreButton>
+                        <SeemoreButton><StyledLink to={`/course/${this.state.id}`}>เรียนรู้เพิ่มเติม</StyledLink></SeemoreButton>
                     </CourseContent>
                 </CourseFeatureEz>
             </ColEasy>
@@ -33,11 +38,21 @@ class CourseFeature extends Component {
 
 export default CourseFeature;
 
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: white;
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+        color: white;
+    }
+`;
+
 const ImageCourseFeature = styled.a`
     width: 100%;
     display: block!important;
     height: 112px;
-    background-image: url(${props=>props.imageURL});
+    background-image: url(${props => props.imageURL});
     background-origin: border-box!important;
     background-size: cover!important;
     background-color: #f0f0f0!important;
@@ -56,7 +71,7 @@ const CourseFeatureEz = styled.div`
     }
 
     background: ${props => {
-        switch(props.background) {
+        switch (props.background) {
             case Constants.NEWBIE_STUDENT:
                 return "linear-gradient(215deg, rgba(85, 230, 214, 1), rgba(77, 170, 248, 1))"
             case Constants.MEDIUM_STUDENT:
@@ -65,8 +80,8 @@ const CourseFeatureEz = styled.div`
                 return "linear-gradient(215deg, rgba(235, 175, 252, 1),rgba(195, 128, 255, 1))"
             default:
                 return "linear-gradient(215deg, rgba(200, 128, 254, 1),rgba(76, 170, 247, 1))"
-          }
-     }};
+        }
+    }};
     
 `;
 
@@ -126,7 +141,7 @@ const CourseTitle = styled.h4`
 
 const Tags = styled.span`
     color: ${props => {
-        switch(props.color) {
+        switch (props.color) {
             case Constants.NEWBIE_STUDENT:
                 return "#43BEF2"
             case Constants.MEDIUM_STUDENT:
@@ -135,8 +150,8 @@ const Tags = styled.span`
                 return "rgba(235, 175, 252, 1)"
             default:
                 return "#43BEF2"
-          }
-     }};
+        }
+    }};
     padding: 0.45em 1.1em;
     font-size: 0.75em;
     border-radius: 0.4em;

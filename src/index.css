@@ -144,3 +144,5 @@ body {
   }
  }
  
+ .slick-track {margin: 0!important}
+ .slick-slide, .slick-slide *{ outline: none !important; }

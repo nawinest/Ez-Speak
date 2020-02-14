@@ -16,53 +16,8 @@ class Slider extends Component {
         showItems: 1,
         totalItems: 0,
         sliderItems: [],
-        data: [
-            {
-                img: "https://media-cdn.tripadvisor.com/media/photo-s/0c/13/c0/8d/street-bangkok-local.jpg"
-            },
-            {
-                img: "https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg"
-            },
-            {
-                img: "https://image.freepik.com/free-photo/image-human-brain_99433-298.jpg"
-            },
-            {
-                img: "https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
-            },
-            {
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtgTXYO7Z2ApzMSwR0jfTQ6b1eFrTt3x1ixf9amNMYXFGSDfvu&s"
-            },
-            {
-                img: "https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg"
-            },
-            {
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe5qNumzoEOugQkHeF3rDeWEbJklsydFiM1a4weWL6fL6nn8xO&s"
-            },
-            {
-                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1tKKGfVwWjA2RYFROx_yKkE5n6Dx5PgVN6es2rvdS_31FL89-&s"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            },
-            {
-                img: "https://tinyjpg.com/images/social/website.jpg"
-            }
-        ]
+        data: this.props.sliderItem ?? []
     }
-
-
 
     componentDidMount = () => {
         this.updateSliderState()
@@ -75,10 +30,17 @@ class Slider extends Component {
         }
     }
 
-    windowResize = () => {
-        this.updateSliderState()
+    componentDidUpdate(previousProps) {
+        if (this.props.sliderItem !== previousProps.sliderItem) {
+            let items = this.props.sliderItem
+            this.setState({ data: items, sliderItems: items, totalItems: items.length })
+        }
     }
 
+    windowResize = () => {
+        this.updateSliderState()
+        this.forceUpdate()
+    }
 
     componentWillUnmount() {
         if (typeof (window) !== undefined) {
@@ -147,7 +109,8 @@ class Slider extends Component {
         } else if (windowWidth > 600) {
             showItems = 2
         }
-
+        
+        this.forceUpdate()
 
         let mv = 100 / showItems
         this.setState({ showItems, mv })
@@ -231,14 +194,21 @@ class Slider extends Component {
                     <SliderWrapper>
                         <div className={sliderClass} ref="slider">
                             {
-                                sliderItems.map((e, i) => {
+                                sliderItems.map((item, index) => {
+                                    let level = Constants.NEWBIE_STUDENT
+                                    if (item.level === 2) {
+                                        level = Constants.MEDIUM_STUDENT
+                                    } else if (item.level === 3) {
+                                        level = Constants.EXPERT_STUDENT
+                                    }
                                     return (
+
                                         <CourseItem
-                                            key={i}
-                                            data={e}
-                                            nameOfCourse={"ฝึกพื้นฐานการสนทนาที่ใช้ในชีวิตประจำวัน"}
-                                            courseLink={"#"}
-                                            courseType={Constants.NEWBIE_STUDENT}
+                                            key={index}
+                                            id={item.course_id}
+                                            imagesURL={item.cover_image_path}
+                                            nameOfCourse={item.name}
+                                            courseType={level}
                                         />
                                     )
                                 })
